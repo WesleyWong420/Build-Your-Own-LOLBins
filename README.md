@@ -26,10 +26,8 @@ The technical requirements of this project are:
 <br>
 
 **NOTE**: BYOL uses Windows Remote Management (WinRM) to communicate with the remote host.
-
+> To enable WinRM on the victim machine:
 ```
-# To enable WinRM on the victim machine:
-
 $ winrm quickconfig
 $ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 $ winrm set winrm/config/service/auth '@{Basic="true"}'
@@ -65,8 +63,8 @@ Cmd.exe | 1 | `Execute`
 Powershell.exe | 4 | `Execute`
 
 ## To-Do
-- [X] Export Report + JSON
-- [ ] WinRM Exceptions
+- [] Export Report + JSON
+- [X] WinRM Exceptions
 <!-- 
 ## Usage
 
