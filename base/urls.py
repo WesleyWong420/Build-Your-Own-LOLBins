@@ -77,11 +77,5 @@ urlpatterns = [
     path('update-glob/<str:pk>/', views.updateGlob, name="update-glob"),
     path('delete-glob/<str:pk>/', views.deleteGlob, name="delete-glob"),
 
-    path('file-directory/', views.fileDirectory, name="file-directory"),
-    path('new-directory/', views.newDirectory, name="new-directory"),
-    path('delete-directory/<str:dir>/', views.deleteDirectory, name="delete-directory"),
-    path('new-file/<str:dir>/', views.newFile, name="new-file"),
-    path('delete-file/<str:dir>/<str:fileName>/', views.deleteFile, name="delete-file"),
-
     path('forbidden/', views.forbidden, name="forbidden"),
 ]
