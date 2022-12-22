@@ -2,7 +2,7 @@
 ![Python](https://img.shields.io/badge/python_3.10.9-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
-tBuild Your Own LOLBins (BYOL) is a threat simulation platform used for demonstrating the weaponization and detection
+Build Your Own LOLBins (BYOL) is a threat simulation platform used for demonstrating the weaponization and detection
 of Living-off-the-Land binaries native to the Windows Operating System. 
 
 ## Inspiration
