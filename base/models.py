@@ -19,7 +19,8 @@ class Scan(models.Model):
     STATUS_CHOICES = (
     ("STOPPED", "STOPPED"),
     ("COMPLETED", "COMPLETED"),
-    ("RUNNING", "RUNNING"))
+    ("RUNNING", "RUNNING"),
+    ("ERROR", "ERROR"))
 
     status = models.CharField(max_length=15, choices=STATUS_CHOICES, default='STOPPED')
     ip = models.CharField("IP Address", max_length=15, default="127.0.0.1")

@@ -65,9 +65,9 @@
           <div class="room__info">
             <h3>{{scan.name}}</h3>
 
-            {% if scan.status == 'STOPPED' %}
-              <span onclick="window.location.href=`{% url 'change-state' scan.id %}`;" style="color: #F78F8F;">
-                <img src="{% static 'images/status_stopped.png' %}" style="margin-right: 0.6rem;"/>
+            {% if scan.status == 'RUNNING' %}
+              <span onclick="window.location.href=`{% url 'change-state' scan.id %}`;" style="color: #FCC419;">
+                <img src="{% static 'images/status_running.png' %}" style="margin-right: 0.6rem;"/>
                 {{scan.status}}
               </span>
             {% elif scan.status == 'COMPLETED' %}
@@ -76,8 +76,8 @@
                 {{scan.status}}
               </span>
             {% else %}
-              <span onclick="window.location.href=`{% url 'change-state' scan.id %}`;" style="color: #FCC419;">
-                <img src="{% static 'images/status_running.png' %}" style="margin-right: 0.6rem;"/>
+              <span onclick="window.location.href=`{% url 'change-state' scan.id %}`;" style="color: #F78F8F;">
+                <img src="{% static 'images/status_stopped.png' %}" style="margin-right: 0.6rem;"/>
                 {{scan.status}}
               </span>
             {% endif %}

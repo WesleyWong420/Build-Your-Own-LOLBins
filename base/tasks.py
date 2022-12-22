@@ -10,6 +10,7 @@ from celery.contrib.abortable import AbortableTask
 from .models import Scan, UserVariant
 from winrm.exceptions import *
 from requests.exceptions import *
+from urllib3.exceptions import *
 import winrm, time, random
 
 class CallbackTask(Task):
@@ -29,11 +30,11 @@ class evilwinrm:
 
     def testConnection(self):
         try:
-            testPSH = """Test-Connection 8.8.8.8"""
             session = winrm.Session(self.host, auth=(self.username, self.password))
-            # session.run_ps(testPSH)
-        except:
-            print("Failure 1")
+            session.run_cmd("whoami")
+        except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout):
+            return False
+        except AuthenticationError:
             return False
 
     def initializeConnection(self, pk):
@@ -168,5 +169,8 @@ def RunScan(self, pk):
 
                 userVariant.save()
     
-    currentScan.status = 'COMPLETED'
+        currentScan.status = 'COMPLETED' 
+    else:
+        currentScan.status = 'ERROR'
+
     currentScan.save()

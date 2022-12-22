@@ -242,7 +242,7 @@ def changeState(request, pk):
     if request.user != scan.user and request.user.is_superuser != 1:
         return redirect('forbidden')  
 
-    if scan.status == 'STOPPED' or scan.status == 'COMPLETED':
+    if scan.status == 'STOPPED' or scan.status == 'COMPLETED' or scan.status == 'ERROR':
         scan.status = 'RUNNING'
         scan.save()
 
@@ -252,8 +252,6 @@ def changeState(request, pk):
                 userVariant.save()
 
         messages.success(request, 'Scan started successfully!')
-        redirect('scan', pk=scan.id)
-
         scan.task = RunScan.delay(pk)
         scan.save()
     elif scan.status == 'RUNNING':
