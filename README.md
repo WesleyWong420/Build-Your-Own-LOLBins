@@ -63,7 +63,7 @@ Cmd.exe | 1 | `Execute`
 Powershell.exe | 4 | `Execute`
 
 ## To-Do
-- [] Export Report + JSON
+- [ ] Export Report + JSON
 - [X] WinRM Exceptions
 <!-- 
 ## Usage
