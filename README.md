@@ -68,17 +68,6 @@ Powershell.exe | 4 | `Execute`
 - [X] Export Report + JSON
 - [ ] WinRM Exceptions
 <!-- 
-**PRODUCTION DEPLOYMENT:**
-```
-$ & c:/Users/Wesley/Documents/BYOL/venv/Scripts/Activate.ps1
-env> python manage.py runserver
-env> python manage.py runserver --insecure
-env> python manage.py makemigrations
-env> python manage.py migrate
-env> python manage.py celery
-env> python -m pip install pywinrm
-```
-
 ## Usage
 
 ## Limitations
@@ -89,18 +78,6 @@ env> python -m pip install pywinrm
 * Require user to manually close certain GUI Error Box so that scan can continue especially when antivirus is enabled (Rundll32)
 * Does not recommend customization, although available
 * All command behind an ampersand "&" will be passed into cmd.exe
-
-## CSS Components
-* CSS + HTML + jQuery + Ajax
-* Bootstrap
-  * Select2
-  * Alerts
-  * Cards
-  * Accordion + Collapse
-  * Offcanvas + Backdrop
-  * Table + DataTable
-  * Breadcrumb
-* Celery + Redis
 
 ## Note
 ```
