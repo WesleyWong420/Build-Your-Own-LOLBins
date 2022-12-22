@@ -1,5 +1,5 @@
 # Build-Your-Own-LOLBins
-[![Python 3.x](https://img.shields.io/badge/python-3.10.9-yellow.svg?style=for-the-badge)](https://www.python.org/) 
+![Python](https://img.shields.io/badge/python_3.10.9-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 
 Build Your Own LOLBins (BYOL) is a threat simulation platform used for demonstrating the weaponization and detection
@@ -27,8 +27,9 @@ The technical requirements of this project are:
 
 **NOTE**: BYOL uses Windows Remote Management (WinRM) to communicate with the remote host.
 
-> To enable WinRM on the victim machine:
 ```
+# To enable WinRM on the victim machine:
+
 $ winrm quickconfig
 $ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 $ winrm set winrm/config/service/auth '@{Basic="true"}'
@@ -65,9 +66,7 @@ Powershell.exe | 4 | `Execute`
 
 ## To-Do
 - [X] Export Report + JSON
-- [ ] ChatGPT Source Code Review
 - [ ] WinRM Exceptions
-- [ ] self.client_address[0]
 <!-- 
 **PRODUCTION DEPLOYMENT:**
 ```
