@@ -149,11 +149,11 @@ def RunScan(self, pk):
                 else:
                     payloadErrorCode = connection.initializeConnection(userVariant.pk)
                     cleanupErrorCode = None
-                    time.sleep(1.5)
+                    time.sleep(1.0)
 
                     if userVariant.cleanup and not userVariant.cleanup is None:
                         cleanupErrorCode = connection.cleanup(userVariant.pk)
-                        time.sleep(1.5)
+                        time.sleep(1.0)
 
                     if payloadErrorCode != 0:
                         userVariant.detected = True
