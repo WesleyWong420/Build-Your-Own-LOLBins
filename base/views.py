@@ -5,10 +5,6 @@ TP059618 APU3F2205CS(CYB)
 Views Handler for the Base Application
 """
 
-from os import listdir, mkdir, remove
-from os.path import isfile, join
-import shutil
-from django.conf import settings
 from django.shortcuts import render, redirect
 from django.db.models import Q, Count
 from django.contrib import messages
@@ -47,8 +43,6 @@ from .forms import (
     AttackTechniqueForm, 
     AttackSubTechniqueForm, 
     GlobForm, 
-    DirectoryForm, 
-    FileForm
 )
 
 def loginPage(request):

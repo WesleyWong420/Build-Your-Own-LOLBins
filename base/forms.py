@@ -101,9 +101,3 @@ class GlobForm(ModelForm):
         model = Glob
         fields = '__all__'
         exclude = ['Technique']
-
-class DirectoryForm(forms.Form):
-    name = forms.CharField(label='Folder Name', max_length=30)
-
-class FileForm(forms.Form):
-    file = forms.FileField()
