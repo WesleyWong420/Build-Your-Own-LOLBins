@@ -1,0 +1,147 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="layout layout--2">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <div class="container">
+        <div class="layout1">
+            <div class="roomList"> 
+                <div class="roomList__header"> 
+                    <div>
+                        <h2>Advanced Persistent Threat (APT) Templates</h2>
+                        <p>{{template_apt_count}} Templates Available</p>
+                    </div>
+                </div>
+
+                <div class="cardContent">
+                    {% for template in template_apt %}
+                        <a class="smallCard" href="{% url 'view-template' template.id %}">
+                            <div class="icon__red"><i class="material-icons md-36">pest_control</i></div>
+                            <p class="title">{{template.name}}</p>
+                            <p class="text">{{template.description}}</p>
+                        </a>
+                    {% endfor %}
+
+                    {% if request.user.is_superuser %}
+                        {% with type="apt" %}
+                            <a class="smallCard" href="{% url 'new-template' type %}">
+                                <div class="icon__red"><i class="material-icons md-36">add</i></div>
+                                <p class="title">Add</p>
+                                <p class="text">Click to add a new template.</p>
+                            </a>
+                        {% endwith %}
+                    {% endif %}
+                </div>  
+            </div>  
+
+            <br>
+
+            <div class="roomList"> 
+                <div class="roomList__header"> 
+                    <div>
+                        <h2>Community Templates</h2>
+                        <p>{{template_community_count}} Templates Available</p>
+                    </div>
+                </div>
+
+                <div class="cardContent">
+                    {% for template in template_community %}
+                        <a class="smallCard" href="{% url 'view-template' template.id %}">
+                            <div class="icon__blue"><i class="material-icons md-36">groups</i></div>
+                            <p class="title">{{template.name}}</p>
+                            <p class="text">{{template.description}}</p>
+                        </a>
+                    {% endfor %}
+
+                    {% if request.user.is_authenticated and not request.user.is_superuser %}
+                        {% with type="community" %}
+                            <a class="smallCard" href="{% url 'new-template' type %}">
+                                <div class="icon__blue"><i class="material-icons md-36">add</i></div>
+                                <p class="title">Add</p>
+                                <p class="text">Click to add a new template.</p>
+                            </a>
+                        {% endwith %}
+                    {% endif %}
+                </div>  
+            </div>  
+
+            <br>
+
+            {% if request.user.is_authenticated %}
+                <div class="roomList"> 
+                    <div class="roomList__header"> 
+                        <div>
+                            <h2>Custom Templates (Private)</h2>
+                            <p>{{template_self_count}} Templates Available</p>
+                        </div>
+                    </div>
+
+                    <div class="cardContent">
+                        {% for template in template_self %}
+                            <a class="smallCard" href="{% url 'view-template' template.id %}">
+                                <div class="icon__yellow"><i class="material-icons md-36">library_books</i></div>
+                                <p class="title">{{template.name}}</p>
+                                <p class="text">{{template.description}}</p>
+                            </a>
+                        {% endfor %}
+
+                        {% with type="self" %}
+                            <a class="smallCard" href="{% url 'new-template' type %}">
+                                <div class="icon__yellow"><i class="material-icons md-36">add</i></div>
+                                <p class="title">Add</p>
+                                <p class="text">Click to add a new template.</p>
+                            </a>
+                        {% endwith %}
+                    </div>  
+                </div>  
+            {% endif %}
+        </div>
+
+        <!-- Side-bar Start -->
+        <div class="activities">
+
+            <div class="activities__header">
+                <h2>Template Updates</h2>
+            </div>
+    
+            {% for template in templates|slice:":8"%}
+                {% if template.public == True or template.user == request.user %}
+                    <div class="activities__box">
+                        <div class="activities__boxHeader roomListRoom__header">
+                            <a href="{% url 'user-profile' template.user.id %}" class="roomListRoom__author">
+                            <div class="avatar avatar--small">
+                                <img src="{% static 'images/APU.png' %}" />
+                            </div>
+                            <p>
+                                {% if template.user == request.user %}
+                                    You
+                                    <span>{{template.created|timesince}} ago</span>
+                                {% else %}
+                                    {{template.user}}
+                                    <span>{{template.created|timesince}} ago</span>
+                                {% endif %}
+                            </p>
+                            </a>
+                        </div>
+            
+                        <div class="activities__boxContent">
+                            <p>created <a href="{% url 'view-template' template.id %}">{{template.name}}</a></p>
+                            {% if template.description != "" %}
+                                <div class="activities__boxRoomContent">
+                                {{template.description}}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+    
+        </div>
+        <!-- Side-bar End -->
+    </div>
+</main>
+
+{% endblock content %}

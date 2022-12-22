@@ -1,0 +1,195 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="layout layout--2">
+  <div class="container">
+
+    <!-- Scan List Start -->
+    <div class="roomList">    
+      {% if request.user.is_authenticated %}    
+        <div class="roomList__header">
+          <div>
+            <h2>Scan Dashboard</h2>
+            <p>{{scan_count}} Scans Completed</p>
+          </div>
+          <a class="btn btn--main" href="{% url 'new-scan' %}">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>add</title>
+              <path
+                d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z"
+              ></path>
+            </svg>
+            Create Scan
+          </a>
+        </div>
+
+        {% if scan_count != 0 %}
+          {% for scan in scans %}
+            {% if request.user == scan.user %}
+              <div class="roomListRoom">
+                <div class="roomListRoom__content">
+                  <a href="{% url 'scan' scan.id %}">{{scan.name}}</a>
+                  <p style="margin-top: 2rem;">{{scan.description}}</p>
+                </div>
+                
+                <div class="roomListRoom__meta">
+                    <a class="roomListRoom__joined">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                        </svg>
+                        Last Updated: {{scan.updated}}
+                    </a>
+
+                    <div class="roomListRoom__tag">
+                      {% if scan.status == 'STOPPED' %}
+                        <p class="roomListRoom__topic" style="color: #F78F8F;">
+                          <img src="{% static 'images/status_stopped.png' %}" />
+                          {{scan.status}}
+                        </p>
+                      {% elif scan.status == 'COMPLETED'%}
+                        <p class="roomListRoom__topic" style="color: #9EEE25;">
+                          <img src="{% static 'images/status_completed.png' %}" />
+                          {{scan.status}}
+                        </p>
+                      {% else %}
+                        <p class="roomListRoom__topic" style="color: #FCC419;">
+                          <img src="{% static 'images/status_running.png' %}" />
+                          {{scan.status}}
+                        </p>
+                      {% endif %}
+                    </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <div class="roomListRoom">
+            <div class="roomListRoom__empty">
+              <a class="btnLogo" href="{% url 'new-scan' %}">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="1.8rem" height="1.8rem" stroke="#71c6dd" stroke-width="1.8" viewBox="0 0 32 32">
+                <title>add</title>
+                <path
+                    d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z"
+                ></path>
+                </svg>
+                New Scan
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% else %}
+
+        <div class="cardHeader">
+          <h1>Threat Simulation Platform</h1>
+          <h1>Build Your Own LOLBins (BYOL)</h1>
+          <p>A post-exploitation toolkit to simulate the 
+            weaponization and detection<br>of native Windows binaries based on LOLBas framework.
+          </p>
+        </div>
+
+        <div class="body">
+          <div class="container">
+            <div class="card">
+              <div class="box">
+                <div class="content">
+                  <h2>01</h2>
+                  <h3>Scan</h3>
+                  <p>Validate effectiveness and readiness of endpoint security against fileless attacks that emphasize on Living-off-the-Land techniques.</p>
+                  <a href="{% url 'login' %}">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="box">
+                <div class="content">
+                  <h2>02</h2>
+                  <h3>Templates</h3>
+                  <p>Automate manual security validation processes from comprehensive threat templates shared among intelligence communities.</p>
+                  <a href="{% url 'login' %}">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="card">
+              <div class="box">
+                <div class="content">
+                  <h2>03</h2>
+                  <h3>Library</h3>
+                  <p>Vast repository of Living-off-the-Land techniques that closely simulate procedural examples of APT groups in an adversarial context.</p>
+                  <a href="{% url 'login' %}">Read More</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="box">
+                <div class="content">
+                  <h2>04</h2>
+                  <h3>File Directory</h3>
+                  <p>Fully customizable threat template that allows LOLBins to be chained together and write custom payloads.</p>
+                  <a href="{% url 'login' %}">Read More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+    <!-- Scan List End -->
+
+
+    <!-- Side-bar Start -->
+    <div class="activities">
+
+      {% if request.user.is_authenticated and scan_count != 0 %}
+        <div class="activities__header">
+          <h2>Recent Activities</h2>
+        </div>
+
+        {% for scan in userScans|slice:":2" %}
+          <div class="activities__box">
+            <div class="activities__boxHeader roomListRoom__header">
+              <a href="{% url 'user-profile' request.user.id %}" class="roomListRoom__author">
+                <div class="avatar avatar--small">
+                  <img src="{% static 'images/APU.png' %}" />
+                </div>
+                <p>
+                  You
+                  <span>{{scan.created|timesince}} ago</span>
+                </p>
+              </a>
+            </div>
+
+            <div class="activities__boxContent">
+              <p>created <a href="{% url 'scan' scan.id %}">{{scan.name}}</a></p>
+              {% if scan.description != "" %}
+                <div class="activities__boxRoomContent">
+                  {{scan.description}}
+                </div>
+              {% endif %}
+            </div>
+          </div>
+
+        {% endfor %}
+
+        <div class="activities__break">
+          <h2>blank</h2>
+        </div>
+
+        {% include "base/updatesSliced.html" %}
+
+      {% else %}
+
+        {% include "base/updatesAll.html" %}
+
+      {% endif %}
+    </div>
+    <!-- Side-bar End -->
+  </div>
+</main>
+
+{% endblock content %}

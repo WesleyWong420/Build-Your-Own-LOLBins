@@ -1,0 +1,137 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Header Start -->
+{% if request.user.is_superuser %}
+
+    {% include "base/libraryAdmin.html" %}
+
+{% else %}
+
+    {% include "base/libraryUser.html" %}
+
+{% endif %}
+<!-- Header End -->
+
+<main class="layout layout--2_1">
+    <div class="container">
+
+        <!-- Search List Start -->
+        <div class="topics">
+            <div class="topics__header">
+                <h2>Browse By Objectives</h2>  
+            </div>
+
+            <ul class="topics__list">
+                <li>
+                    <a href="{% url 'library' %}" class="active">All <span>{{fullTechniques.count}}</span></a>
+                </li>
+
+                {% for objective in objectives %}
+                    {% if objective.technique_set.all.count != 0 %}
+                        <li>
+                            <a href="{% url 'library' %}?q={{objective.name}}">{{objective.name}} <span>{{objective.technique_set.all.count}}</span></a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <div class="topics__header">
+                <h2>Browse By APT Groups</h2>  
+            </div>
+
+            <ul class="topics__list">
+                {% for group in groups %}
+                    {% if group.technique_set.all.count != 0 %}
+                        <li>
+                            <a href="{% url 'library' %}?q={{group.name}}">{{group.name}} <span>{{group.technique_set.all.count}}</span>
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- Search List End -->
+        
+        <!-- Technique List Start -->
+        <div class="topics">
+            <div class="topics__header2">
+                <h2>List of Techniques</h2>
+                <h2>{{ fullTechniques.count }} LOLBins • {{ variants.count }} Variants</h2>
+            </div>
+
+            <div class="roomList">
+                {% for technique in techniques %}
+
+                    <div class="roomListRoom">
+                        <div class="roomListRoom__content">
+                            <div class="room__top_dark">
+                                <div class="room_topLeft">
+                                    <a href="{% url 'variant' technique.id %}">{{technique.name}}</a>
+                                </div>
+            
+                                {% if request.user.is_superuser %}
+                                    <div class="room__topRight">
+                                        <a href="{% url 'update-technique' technique.id %}">
+                                        <svg
+                                            enable-background="new 0 0 24 24"
+                                            height="32"
+                                            viewBox="0 0 24 24"
+                                            width="32"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <title>edit</title>
+                                            <g>
+                                            <path d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
+                                            </g>
+                                            <g>
+                                            <g>
+                                                <path
+                                                d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z"/>
+                                            </g>
+                                            <g>
+                                                <path
+                                                d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z"/>
+                                            </g>
+                                            </g>
+                                        </svg>
+                                        </a>
+                        
+                                        <a href="{% url 'delete-technique' technique.id %}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            
+                            <h4>{{technique.variant_set.all.count}} Variants</h4> 
+                            <p>{{technique.description}}</p>
+                        </div>
+
+                        <div class="roomListRoom__meta">
+                            <a class="roomListRoom__joined">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                                </svg>
+                                Last Updated: {{technique.updated|timesince}} ago
+                            </a>
+
+                            <div class="roomListRoom__tag">
+                                {% for objective in technique.Objective.all %}
+                                    <p class="roomListRoom__topic">{{objective.name}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Technique List End -->
+</main>
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css' media='screen' href="{% static 'styles/style.css' %}">
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+    <title>Build Your Own LOLBins (BYOL)</title>
+  </head>
+
+  <body>
+    {% include 'navigationBar.html' %}
+
+    {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" id="msg" role="alert">
+        {% if message.tags == 'danger' %}
+          <strong>Error!</strong> {{ message }}
+        {% else %}
+          <strong>{{ message.tags|capfirst }}!</strong> {{ message }}
+        {% endif %}
+      </div>
+      {% endfor %}
+    {% endif %}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+      setTimeout(function() {
+          $('#msg').fadeOut('fast');
+      }, 3000);
+    </script>
+
+    {% block content %}
+    
+    {% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<main class="create-room layout">
+  <div class="container">
+    <div class="layout__box__large">
+      <div class="layout__boxHeader">
+        <div class="layout__boxTitle">
+          <a href="{{request.META.HTTP_REFERER}}">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>arrow-left</title>
+              <path
+                d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+              </path>
+            </svg>
+          </a>
+          <h3>Update Existing Technique</h3>
+        </div>
+      </div>
+
+      <div class="layout__body">
+        <form class="form" action="" method="POST">
+          {% csrf_token %}
+
+          <div class="form__group">
+            <label for="room_name">Name:</label>
+            {{form.name}}
+          </div>
+
+          <div class="form__group">
+            <label for="room_name">Descrption:</label>
+            {{form.description}}
+          </div>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js" integrity="sha512-qiKM6FJbI5x5+GL5CEbAUK0suRhjXVMRXnH/XQJaaQ6iQPf05XxbFBE4jS6VJzPGIRg7xREZTrGJIZVk1MLclA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <script>
+            $(document).ready(function()
+            {
+              $("#objective_name").select2({
+                  placeholder:''
+              });
+            });
+          </script>
+
+          <div class="form__group">
+            <label for="objective_name">Objectives:</label>
+            
+            <select id="objective_name" name="objective_name" multiple="True" value="{{form.Objective}}
+            <!-- ">
+              {% for objective in objectives %}
+                <option>{{objective.name}}</option>
+              {% endfor %} -->
+            </select>
+
+            <!-- Line 51 to 54 commented out to prevent display error -->
+          </div>
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-beta.1/js/select2.min.js" integrity="sha512-qiKM6FJbI5x5+GL5CEbAUK0suRhjXVMRXnH/XQJaaQ6iQPf05XxbFBE4jS6VJzPGIRg7xREZTrGJIZVk1MLclA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+          <script>
+            $(document).ready(function()
+            {
+              $("#group_name").select2({
+                  placeholder:''
+              });
+            });
+          </script>
+
+          <div class="form__group">
+            <label for="group_name">APT Groups:</label>
+            
+            <select id="group_name" name="group_name" multiple="True" value="{{form.APT}}
+            <!-- ">
+              {% for group in groups %}
+                <option>{{group.name}}</option>
+              {% endfor %} -->
+            </select>
+            
+            <!-- Line 75 to 78 commented out to prevent display error -->
+          </div>
+
+          <div class="form__action">
+            <a class="btn btn--dark" href="{{request.META.HTTP_REFERER}}">Cancel</a>
+            <button class="btn btn--main" type="submit">Update Technique</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+{% endblock content %}

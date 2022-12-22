@@ -1,0 +1,424 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="profile-page layout layout">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <div class="container">
+    <!-- Scan Start -->
+    <div class="room">
+      <div class="room__top">
+        <div class="room__topLeft">
+          <a href="{% url 'template' %}">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>arrow-left</title>
+              <path
+                d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z"
+              ></path>
+            </svg>
+          </a>
+          <h3>Template Dashboard</h3>
+        </div>
+
+        <div class="room__topRight">
+          {% if request.user == template.user or request.user.is_superuser %}
+            <a href="{% url 'update-template' template.id %}">
+                <svg
+                enable-background="new 0 0 24 24"
+                height="32"
+                viewBox="0 0 24 24"
+                width="32"
+                xmlns="http://www.w3.org/2000/svg">
+                <title>edit</title>
+                <g>
+                    <path d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
+                </g>
+                <g>
+                    <g>
+                    <path
+                        d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z"
+                    />
+                    </g>
+                    <g>
+                    <path
+                        d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z"
+                    />
+                    </g>
+                </g>
+                </svg>
+            </a>
+
+            <a href="{% url 'delete-template' template.id %}">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+              </svg>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="room__box">
+        <div class="room__header scroll">
+          <div class="room__info">
+            <h3>{{template.name}}</h3>
+
+            <a class="btn btn--main" href="{% url 'simulate-template' template.id %}">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+                  <title>add</title>
+                  <path
+                    d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z"
+                  ></path>
+                </svg>
+                Simulate Now
+            </a>
+          </div>
+
+          <div class="room__hosted">
+            <p>Created by:</p>
+            <a href="{% url 'user-profile' template.user.id %}" class="room__author">
+                <div class="avatar avatar--small">
+                  <img src="{% static 'images/APU.png' %}" />
+                </div>
+                <span>@{{template.user.username}}</span>
+            </a>
+          </div>
+          
+          <div class="room__details">
+            {{template.description}}
+          </div>
+
+          <div class="room__footer">
+            <span>
+              <img src="{% static 'images/simulation.png' %}" style="margin-right: 0.6rem; margin-top: 0.2rem;"/>
+              <h3>ALL SIMULATIONS</h3>
+            </span>
+          </div>
+        </div>
+
+        <div class="room__conversation2 scroll">
+          <div class="threads scroll">
+            <!-- Threads might overlap with description above if exceed length -->
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+              {% for simulation in simulations %}
+                {% if simulation.Template.id == template.id %}
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-heading{{simulation.id}}">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{simulation.id}}" aria-expanded="false" aria-controls="flush-collapse{{simulation.id}}">
+                              <div class="accordion-firstrow">
+                                <h4>{{simulation.name}}</h4>
+
+                                {% if request.user == template.user or request.user.is_superuser %}
+                                  <div class="room__topRight">
+                                    <a href="{% url 'update-simulation' simulation.id %}">
+                                      <svg
+                                        enable-background="new 0 0 24 24"
+                                        height="32"
+                                        viewBox="0 0 24 24"
+                                        width="32"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <title>edit</title>
+                                        <g>
+                                          <path d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
+                                        </g>
+                                        <g>
+                                          <g>
+                                            <path
+                                              d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z"
+                                            />
+                                          </g>
+                                          <g>
+                                            <path
+                                              d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z"
+                                            />
+                                          </g>
+                                        </g>
+                                      </svg>
+                                    </a>
+
+                                    <a href="{% url 'delete-template-simulation' simulation.id %}">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                      </svg>
+                                    </a>
+                                  </div>
+                                {% endif %}
+                              </div>  
+
+                              <span>{{ simulation.UserVariant.all|length }} Actions</span>
+                          </button>
+                      </h2>
+                
+                      <!-- Accordion Graphic  -->
+                      <div id="flush-collapse{{simulation.id}}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{simulation.id}}" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                          Attacker Objectives:<br>
+                          <div class="accordion-boxes">
+                            {% for variant in simulation.UserVariant.all %}
+                              {% if variant.chainPrevious == 'Yes' %}
+                                <div class="connector-padding">aaaaaa</div>
+                              {% elif variant.chainPrevious == 'No' and not forloop.first %}
+                                <div class="connector-blank">aaaaaa</div>
+                              {% endif %}
+
+                              <a class="accordion-box {% if variant.highIntegrity == 'Yes' %} accordion-box-integrity {% endif %}" data-bs-toggle="offcanvas" href="#offcanvasExample{{variant.id}}">
+                                <div class="accordion-test {% if variant.highIntegrity == 'Yes' %} accordion-test-integrity {% endif %}">
+                                  {% if variant.Variant.Objective.name == 'Download' %}
+                                    <i class="material-icons md-30">download</i>
+                                  {% elif variant.Variant.Objective.name == 'Upload' %}
+                                    <i class="material-icons md-30">file_upload</i>
+                                  {% elif variant.Variant.Objective.name == 'Copy' %}
+                                    <i class="material-icons md-30">content_copy</i>
+                                  {% elif variant.Variant.Objective.name == 'Execute' %}
+                                    <i class="material-icons md-30">play_arrow</i>
+                                  {% elif variant.Variant.Objective.name == 'Encode' %}
+                                    <i class="material-icons md-30">redo</i>
+                                  {% elif variant.Variant.Objective.name == 'Decode' %}
+                                    <i class="material-icons md-30">undo</i>
+                                  {% elif variant.Variant.Objective.name == 'Compile' %}
+                                    <i class="material-icons md-30">handyman</i>
+                                  {% elif variant.Variant.Objective.name == 'Conceal' %}
+                                    <i class="material-icons md-30">visibility_off</i>
+                                  {% elif variant.Variant.Objective.name == 'Credentials Dump' %}
+                                    <i class="material-icons md-30">key</i>
+                                  {% elif variant.Variant.Objective.name == 'Alternate Data Streams' %}
+                                    <i class="material-icons md-30">waves</i>
+                                  {% elif variant.Variant.Objective.name == 'UAC Bypass' or variant.Variant.Objective.name == 'AWL Bypass' %}
+                                    <i class="material-icons md-30">remove_moderator</i>
+                                  {% endif %}
+                                  <h4>{{variant.Variant.Objective.name}}</h4>
+                                </div>
+                                
+                                <span class="accordion-span {% if variant.highIntegrity == 'Yes' %} accordion-span-integrity {% endif %}">{{variant.name}}</span>
+                              </a>
+                            {% endfor %}
+                          </div>
+    
+                          {% for variant in simulation.UserVariant.all %}
+                            <!-- Offcanvas -->
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample{{variant.id}}" aria-labelledby="offcanvasExampleLabel">
+                              <div class="offcanvas-close">
+                                <a class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32">
+                                    <title>remove</title>
+                                    <path
+                                      d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
+                                    ></path>
+                                  </svg>
+                                </a>
+                              </div>
+
+                              <div class="accordion-keys">
+                                <h5 class="offcanvas-title" id="offcanvasExampleLabel">SIMULATION DETAILS</h5>
+                                {% if request.user == template.user or request.user.is_superuser %}
+                                  <div class="accordion-pad">
+                                    <a href="{% url 'update-uservariant' variant.id %}">
+                                      <svg
+                                      enable-background="new 0 0 24 24"
+                                      height="20"
+                                      viewBox="0 0 24 24"
+                                      width="20"
+                                      xmlns="http://www.w3.org/2000/svg">
+                                      <title>edit</title>
+                                      <g>
+                                        <path d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
+                                      </g>
+                                      <g>
+                                        <g>
+                                          <path
+                                            d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z"
+                                          />
+                                        </g>
+                                        <g>
+                                          <path
+                                            d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z"
+                                          />
+                                        </g>
+                                      </g>
+                                      </svg>
+                                    </a>
+      
+                                    <a href="{% url 'delete-uservariant' variant.id %}">
+                                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                      </svg>
+                                    </a>
+                                  </div>
+                                {% endif %}
+                              </div>
+                              
+                              <div class="offcanvas-header">
+                                <h5>{{variant.name}}</h5>
+
+                                <div class="offcanvas-severity">
+                                  {% if variant.Variant.severity == "HIGH" %}
+                                    <svg aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#DD2727"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#F03D3D"></path></svg>
+                                    <span style="color: #DD2727;">{{variant.Variant.severity|lower|title}}</span>
+                                  {% elif variant.Variant.severity == "MEDIUM" %}
+                                    <svg aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#FFAD0D"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#FFAD0D"></path></svg>
+                                    <span style="color: #FFAD0D;">{{variant.Variant.severity|lower|title}}</span>
+                                  {% else %}
+                                    <svg aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#0C66FF"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#0C66FF"></path></svg>
+                                    <span style="color: lightskyblue;">{{variant.Variant.severity|lower|title}}</span>
+                                  {% endif %}
+                                </div>
+                              </div>
+
+                              <div class="offcanvas-preheader">
+                                <div class="offcanvas-col">
+                                  <span>Release Date:</span>
+                                  <div>{{variant.Variant.created|date:"Y-m-d"}}</div>
+                                </div>
+
+                                <div class="offcanvas-col">
+                                  <span>ATT&CK ID:</span>
+
+                                  {% if variant.Variant.AttackSubTechnique.attackid != ".000" %}
+                                    <div>{{variant.Variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid}}:{{variant.Variant.AttackSubTechnique.AttackTechnique.attackid}}{{variant.Variant.AttackSubTechnique.attackid}}</div>
+                                  {% else %}
+                                    <div>{{variant.Variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid}}:{{variant.Variant.AttackSubTechnique.AttackTechnique.attackid}}</div>
+                                  {% endif %}
+                                </div>
+
+                                <div class="clt">
+                                  <span>ATT&CK Tactics:</span>
+                                  <ul>
+                                    <li>
+                                      {{variant.Variant.AttackSubTechnique.AttackTechnique.AttackTactic.name}}
+                                      <ul>
+                                        <li>
+                                          {{variant.Variant.AttackSubTechnique.AttackTechnique.name}}
+                                          <ul>
+                                            {% if variant.Variant.AttackSubTechnique.attackid != ".000" %}
+                                              <li>{{variant.Variant.AttackSubTechnique.name}}</li>
+                                            {% endif %}
+                                          </ul>
+                                        </li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </div>
+                              </div>
+                        
+                              <div class="offcanvas-body">
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"">
+                                      Description
+                                    </button>
+                                  </h2>
+                                  <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                                    <div class="accordion-body">
+                                      {{variant.Variant.description}}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                      Payload
+                                    </button>
+                                  </h2>
+                                  <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+                                    <div class="accordion-body">
+                                      <div class="underline">Process</div>
+                                      <p>{{variant.payload}}</p>
+                                    </div>
+    
+                                    {% if variant.cleanup and not variant.cleanup is None %}
+                                      <div class="accordion-body">
+                                        <div class="underline">Cleanup | Verification</div>
+                                        <p>{{variant.cleanup}}</p>
+                                      </div>
+                                    {% endif %}
+                                  </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                      Detection
+                                    </button>
+                                  </h2>
+                                  <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
+                                    <div class="accordion-body">
+                                      {{variant.Variant.detection}}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                      Prevention
+                                    </button>
+                                  </h2>
+                                  <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
+                                    <div class="accordion-body">
+                                      {{variant.Variant.prevention}}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                      References
+                                    </button>
+                                  </h2>
+                                  <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive">
+                                    <div class="accordion-body">
+                                      <div class="offcanvas-logos">
+                                        <a class="offcanvas-reference-long" href="{{variant.Variant.mitre}}" target="_blank" rel="noopener">
+                                          <img src="{% static 'images/mitre.png' %}"/>
+                                        </a>
+                                        <a class="offcanvas-reference-compact" href="{{variant.Variant.lolbas}}" target="_blank" rel="noopener">
+                                          <img src="{% static 'images/lolbas.png' %}"/>
+                                        </a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        </div>
+                      </div>
+                    </div>
+                {% endif %}
+              {% endfor %}
+            </div>
+            <br>
+
+          </div>
+        </div>
+      </div>
+      
+      {% if scan.status != "RUNNING" %}
+        <div class="room__message">
+          <div class="roomListRoom__add">
+            <!-- Hidden Form for Simulation -->
+            <form method="POST" action="">
+              {% csrf_token %}
+              <div hidden>
+                <label for="name">Simulation Name:</label><br>
+                <input type="text" id="name" name="name" value="New Simulation"/><br>
+
+              </div>
+
+              <input type="submit" class="btnLogo" value="Add Simulation">
+            </form>
+          </div>
+        </div>    
+      {% endif %}    
+    </div>
+    <!-- Scan End -->
+  </div>
+</main>
+
+{% endblock content %}  

@@ -1,0 +1,374 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="layout layout--2">
+  <div class="container-column">
+
+    <!-- Variant List Start -->    
+    <div class="roomList__header">
+      <div>
+          <h2>{{technique.name}}.exe</h2>
+          <p>{{variant_count}} Variants Created</p>
+      </div>
+      {% if request.user.is_authenticated and request.user.is_superuser %} 
+          <a class="btn btn--main" href="{% url 'new-variant' technique.id %}">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>add</title>
+              <path
+                  d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z"
+              ></path>
+              </svg>
+              Create New Variant
+          </a>
+      {% endif %}
+    </div>
+
+    <table id="variant-table" class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Severity</th>
+                <th scope="col">Objective</th>
+                <th scope="col">Tactic</th>
+                <th scope="col">Technique</th>
+                <th scope="col">Sub-Technique</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if variant_count != 0 %}
+                {% for variant in variants %}
+                    <tr>
+                        <td style="min-width: 4rem;">{{variant.id}}</td>
+                        <td style="max-width: 25rem;font-weight: 500">
+                            <a data-bs-toggle="offcanvas" href="#offcanvasExample{{variant.id}}">
+                                {{variant.name}}
+                            </a>
+                        </td>
+                        <td style="min-width: 10rem;">
+                            {% if variant.severity == "HIGH" %}
+                                <svg width="25" height="25" aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#DD2727"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#F03D3D"></path></svg>
+                                <span style="color: #DD2727;">{{variant.severity|lower|title}}</span>
+                            {% elif variant.severity == "MEDIUM" %}
+                                <svg width="25" height="25" aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#FFAD0D"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#FFAD0D"></path></svg>
+                                <span style="color: #FFAD0D;">{{variant.severity|lower|title}}</span>
+                            {% else %}
+                                <svg width="25" height="25" aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#0C66FF"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#0C66FF"></path></svg>
+                                <span style="color: lightskyblue;">{{variant.severity|lower|title}}</span>
+                            {% endif %}
+                        </td>
+                        <td style="min-width: 10rem;">{{variant.Objective.name}}</td>
+                        <td>{{variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid}}: {{variant.AttackSubTechnique.AttackTechnique.AttackTactic.name}}</td>
+                        <td>{{variant.AttackSubTechnique.AttackTechnique.attackid}}: {{variant.AttackSubTechnique.AttackTechnique.name}}</td>
+                        <td>
+                            {% if variant.AttackSubTechnique.attackid == ".000" %}
+                                -
+                            {% else %}
+                                {{variant.AttackSubTechnique.AttackTechnique.attackid}}{{variant.AttackSubTechnique.attackid}}: {{variant.AttackSubTechnique.name}}
+                            {% endif %}
+                        </td>
+                    </tr>
+
+                    <!-- Offcanvas -->
+                      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasExample{{variant.id}}" aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-close">
+                          <a class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 32 32">
+                              <title>remove</title>
+                              <path
+                                d="M27.314 6.019l-1.333-1.333-9.98 9.981-9.981-9.981-1.333 1.333 9.981 9.981-9.981 9.98 1.333 1.333 9.981-9.98 9.98 9.98 1.333-1.333-9.98-9.98 9.98-9.981z"
+                              ></path>
+                            </svg>
+                          </a>
+                        </div>
+
+                        <div class="accordion-keys">
+                          <h5 class="offcanvas-title" id="offcanvasExampleLabel">VARIANT DETAILS</h5>
+                          {% if request.user.is_authenticated and request.user.is_superuser %} 
+                            <div class="accordion-pad">
+                              <a href="{% url 'update-variant' variant.id %}">
+                                <svg
+                                enable-background="new 0 0 24 24"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                width="20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <title>edit</title>
+                                <g>
+                                  <path d="m23.5 22h-15c-.276 0-.5-.224-.5-.5s.224-.5.5-.5h15c.276 0 .5.224.5.5s-.224.5-.5.5z" />
+                                </g>
+                                <g>
+                                  <g>
+                                    <path
+                                      d="m2.5 22c-.131 0-.259-.052-.354-.146-.123-.123-.173-.3-.133-.468l1.09-4.625c.021-.09.067-.173.133-.239l14.143-14.143c.565-.566 1.554-.566 2.121 0l2.121 2.121c.283.283.439.66.439 1.061s-.156.778-.439 1.061l-14.142 14.141c-.065.066-.148.112-.239.133l-4.625 1.09c-.038.01-.077.014-.115.014zm1.544-4.873-.872 3.7 3.7-.872 14.042-14.041c.095-.095.146-.22.146-.354 0-.133-.052-.259-.146-.354l-2.121-2.121c-.19-.189-.518-.189-.707 0zm3.081 3.283h.01z"
+                                    />
+                                  </g>
+                                  <g>
+                                    <path
+                                      d="m17.889 10.146c-.128 0-.256-.049-.354-.146l-3.535-3.536c-.195-.195-.195-.512 0-.707s.512-.195.707 0l3.536 3.536c.195.195.195.512 0 .707-.098.098-.226.146-.354.146z"
+                                    />
+                                  </g>
+                                </g>
+                                </svg>
+                              </a>
+
+                              <a href="{% url 'delete-variant' variant.id %}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                                  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                                </svg>
+                              </a>
+                            </div>
+                          {% endif %}
+                        </div>
+                        
+                        <div class="offcanvas-header">
+                          <h5>{{variant.name}}</h5>
+
+                          <div class="offcanvas-severity">
+                            {% if variant.severity == "HIGH" %}
+                              <svg aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#DD2727"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#F03D3D"></path></svg>
+                              <span style="color: #DD2727;">{{variant.severity|lower|title}}</span>
+                            {% elif variant.severity == "MEDIUM" %}
+                              <svg aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#FFAD0D"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#FFAD0D"></path></svg>
+                              <span style="color: #FFAD0D;">{{variant.severity|lower|title}}</span>
+                            {% else %}
+                              <svg aria-hidden="true" focusable="false" class="svg-inline--fa" role="img" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path opacity="0.3" d="M2.1077 6.28867L12 0.57735L21.8923 6.28867V17.7113L12 23.4227L2.1077 17.7113V6.28867Z" stroke="#0C66FF"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M12 3L19.7942 7.5V16.5L12 21L4.20577 16.5V7.5L12 3Z" fill="#0C66FF"></path></svg>
+                              <span style="color: lightskyblue;">{{variant.severity|lower|title}}</span>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                        <div class="offcanvas-preheader">
+                          <div class="offcanvas-col">
+                            <span>Release Date:</span>
+                            <div>{{variant.created|date:"Y-m-d"}}</div>
+                          </div>
+
+                          <div class="offcanvas-col">
+                            <span>ATT&CK ID:</span>
+
+                            {% if variant.AttackSubTechnique.attackid != ".000" %}
+                              <div>{{variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid}}:{{variant.AttackSubTechnique.AttackTechnique.attackid}}{{variant.AttackSubTechnique.attackid}}</div>
+                            {% else %}
+                              <div>{{variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid}}:{{variant.AttackSubTechnique.AttackTechnique.attackid}}</div>
+                            {% endif %}
+                          </div>
+
+                          <div class="clt">
+                            <span>ATT&CK Tactics:</span>
+                            <ul>
+                              <li>
+                                {{variant.AttackSubTechnique.AttackTechnique.AttackTactic.name}}
+                                <ul>
+                                  <li>
+                                    {{variant.AttackSubTechnique.AttackTechnique.name}}
+                                    <ul>
+                                      {% if variant.AttackSubTechnique.attackid != ".000" %}
+                                        <li>{{variant.AttackSubTechnique.name}}</li>
+                                      {% endif %}
+                                    </ul>
+                                  </li>
+                                </ul>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+                  
+                        <div class="offcanvas-body">
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                              <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"">
+                                Description
+                              </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                              <div class="accordion-body">
+                                {{variant.description}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                              <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                                Generic Payload
+                              </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse show" aria-labelledby="headingTwo">
+                              <div class="accordion-body">
+                                <div class="underline">Process</div>
+                                <p>{{variant.payload}}</p>
+                              </div>
+
+                              {% if variant.cleanup and not variant.cleanup is None %}
+                                <div class="accordion-body">
+                                  <div class="underline">Cleanup | Verification</div>
+                                  <p>{{variant.cleanup}}</p>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo2">
+                              <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo2" aria-expanded="true" aria-controls="collapseTwo2">
+                                Default Payload
+                              </button>
+                            </h2>
+                            <div id="collapseTwo2" class="accordion-collapse collapse show" aria-labelledby="headingTwo2">
+                              <div class="accordion-body">
+                                <div class="underline">Process</div>
+                                <p>{{variant.defaultPayload}}</p>
+                              </div>
+
+                              {% if variant.defaultCleanup and not variant.defaultCleanup is None %}
+                                <div class="accordion-body">
+                                  <div class="underline">Cleanup | Verification</div>
+                                  <p>{{variant.defaultCleanup}}</p>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                              <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                                Detection
+                              </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree">
+                              <div class="accordion-body">
+                                {{variant.detection}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                              <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                Prevention
+                              </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour">
+                              <div class="accordion-body">
+                                {{variant.prevention}}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                              <button class="accordion-button accordion-button-smaller" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
+                                References
+                              </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse show" aria-labelledby="headingFive">
+                              <div class="accordion-body">
+                                <div class="offcanvas-logos">
+                                  <a class="offcanvas-reference-long" href="{{variant.mitre}}" target="_blank" rel="noopener">
+                                    <img src="{% static 'images/mitre.png' %}"/>
+                                  </a>
+                                  <a class="offcanvas-reference-compact" href="{{variant.lolbas}}" target="_blank" rel="noopener">
+                                    <img src="{% static 'images/lolbas.png' %}"/>
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <!-- Offcanvas End -->
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    <!-- Variant List End -->
+
+    <br>
+
+    <!-- Glob List Start -->    
+    <div class="roomList__header">
+      <div>
+          <h2>Globfuscation Wildcards</h2>
+          <p>{{glob_count}} Variations Available</p>
+      </div>
+      {% if request.user.is_authenticated and request.user.is_superuser %} 
+          <a class="btn btn--main" href="{% url 'new-glob' technique.id %}">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+              <title>add</title>
+              <path
+                  d="M16.943 0.943h-1.885v14.115h-14.115v1.885h14.115v14.115h1.885v-14.115h14.115v-1.885h-14.115v-14.115z"
+              ></path>
+              </svg>
+              New Globfuscation
+          </a>
+      {% endif %}
+    </div>
+
+    <table id="glob-table" class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Created On</th>
+                <th scope="col">Last Updated</th>
+                {% if request.user.is_authenticated and request.user.is_superuser %} 
+                  <th scope="col">Actions</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% if glob_count != 0 %}
+                {% for glob in globs %}
+                    <tr>
+                        <td style="width: 3.5rem">{{forloop.counter}}</td>
+                        <td style="width: 29.5rem; font-weight: 500">{{glob.name}}</td>
+                        <td>{{glob.created}}</td>
+                        <td>{{glob.updated}}</td>
+                        {% if request.user.is_authenticated and request.user.is_superuser %} 
+                          <td style="width: 13rem;">
+                            <a href="{% url 'update-glob' glob.id %}" style="padding-right: 2rem">Edit</a>
+                            <a href="{% url 'delete-glob' glob.id %}">Delete</a>
+                          </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+    <!-- Glob List End -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $('#variant-table').DataTable({
+          "searching": false,
+          "info": false,
+          "lengthChange": false,
+          "paginate": false
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>
+
+    <script>
+      $(document).ready(function () {
+        $('#glob-table').DataTable({
+          "searching": false,
+          "info": false,
+          "lengthChange": false,
+          "paginate": false
+        });
+        $('.dataTables_length').addClass('bs-select');
+      });
+    </script>
+    
+  </div>
+</main>
+
+{% endblock content %}

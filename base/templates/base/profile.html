@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="profile-page layout layout--2">
+  <div class="container">
+
+    <!-- Basic Information Start -->
+    <div class="roomList">
+      <div class="profile">
+        <div class="profile__avatar">
+          <div class="avatar avatar--large active">
+            <img src="{% static 'images/APU.png' %}" />
+          </div>
+        </div>
+
+        <div class="profile__info">
+          <h3>{{user.first_name}} {{user.last_name}}</h3>
+          <p>@{{user.username}}</p>
+
+          {% if request.user == user %}
+            <a href="{% url 'edit-profile' %}" class="btn btn--main btn--pill">Edit Profile</a>
+          {% endif %}
+        </div>
+
+        <div class="profile__about">
+          <h3>About</h3>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur illo tenetur
+            facilis sunt nemo debitis quisquam hic atque aut? Ducimus alias placeat optio
+            accusamus repudiandae quis ab ex exercitationem rem?
+          </p>
+        </div>
+
+        <div class="profile__about">
+          <h3>Email Address</h3>
+          <p>{{user.email}}</p>
+        </div>
+
+      </div>
+    </div>
+    <!-- Basic Information End -->
+
+    <!-- Activities Start -->
+    <div class="activities">
+      <div class="activities__header">
+        <h2>Recent Activities</h2>
+      </div>
+
+      {% for scan in userScans %}
+        <div class="activities__box">
+          <div class="activities__boxHeader roomListRoom__header">
+            <a href="{% url 'user-profile' user.id%}" class="roomListRoom__author">
+              <div class="avatar avatar--small">
+                <img src="{% static 'images/APU.png' %}" />
+              </div>
+              <p>
+                {{user.username}}
+                <span>{{scan.created|timesince}} ago</span>
+              </p>
+            </a>
+          </div>
+
+          <div class="activities__boxContent">
+            <p>created <a href="{% url 'scan' scan.id %}">{{scan.name}}</a></p>
+            {% if scan.description != "" %}
+              <div class="activities__boxRoomContent">
+                {{scan.description}}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <div class="activities__box">
+          <div class="activities__boxHeader roomListRoom__header">
+            <a class="roomListRoom__author">
+              <p>
+                No recent activities found
+                <span>Recent scans will appear here.</span>
+              </p>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+      <div class="activities__break">
+        <h2>blank</h2>
+      </div>
+    </div>
+    <!-- Activities End -->
+  </div>
+</main>
+
+{% endblock content %}

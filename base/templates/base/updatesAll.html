@@ -1,0 +1,31 @@
+{% load static %}
+
+<div class="activities">
+    <div class="activities__header">
+      <h2>Library Updates</h2>
+    </div>
+
+{% for technique in techniques|slice:":4"%}
+    <div class="activities__box">
+      <div class="activities__boxHeader roomListRoom__header">
+        <a href="{% url 'user-profile' technique.user.id %}" class="roomListRoom__author">
+          <div class="avatar avatar--small">
+            <img src="{% static 'images/APU.png' %}" />
+          </div>
+          <p>
+            {{technique.user}}
+            <span>{{technique.created|timesince}} ago</span>
+          </p>
+        </a>
+      </div>
+
+      <div class="activities__boxContent">
+        <p>created <a href="{% url 'library' %}?q={{technique.name}}">{{technique.name}}</a></p>
+        {% if technique.description != "" %}
+          <div class="activities__boxRoomContent">
+            {{technique.description}}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+{% endfor %}
