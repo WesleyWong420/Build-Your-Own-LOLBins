@@ -36,9 +36,13 @@ The technical requirements of this project are:
 $ winrm quickconfig
 $ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
 $ winrm set winrm/config/service/auth '@{Basic="true"}'
-$ netsh advfirewall firewall add rule name="WinRM-HTTP" dir=in localport=5985 protocol=TCP action=allow
+$ netsh advfirewall firewall add rule name="WinRM" dir=in localport=5985 protocol=TCP action=allow
 $ Set-NetConnectionProfile -NetworkCategory Private
 ```
+
+## Usage
+**NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. Only use Local Admin Account as the user credentials!
+**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. byol.dll, byol.exe, byol.js... do not have defensive capabilities and will be flagged by AV vendors. It is recommended to disable any AV solutions before performing a scan simulation.
 
 ## Technique Coverage
 | LOLBins | Variants | Objectives |
@@ -70,10 +74,3 @@ Powershell.exe | 4 | `Execute`
 ## To-Do
 - [ ] Export Report + JSON
 - [X] WinRM Exceptions
-
-## Limitations
-* Use Local Administrator Account
-* Recommended to Disable Antivirus
-* Recommended to use Cleanup with ErrorLevel
-* Recommended to put Cleanup before Verification for accurate result
-* Require user to manually close certain GUI Error Box so that scan can continue especially when antivirus is enabled (Rundll32)
