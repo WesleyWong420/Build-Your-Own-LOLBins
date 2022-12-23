@@ -1,0 +1,13 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% load static %}
+
+<main class="auth layout">
+    <div class="container-column">
+        <a href="{% url 'export-excel' 36 %}" class="btn btn--link">Excel</a>
+        <a href="{% url 'export-json' 36 %}" class="btn btn--link">JSON</a>
+    </div>
+</main>
+
+{% endblock content %}

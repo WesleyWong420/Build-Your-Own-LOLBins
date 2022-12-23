@@ -78,6 +78,8 @@ urlpatterns = [
     path('delete-glob/<str:pk>/', views.deleteGlob, name="delete-glob"),
 
     path('report/', views.report, name="report"),
+    path('export-excel/<str:pk>/', views.exportExcel, name="export-excel"),
+    path('export-json/<str:pk>/', views.exportJson, name="export-json"),
 
     path('forbidden/', views.forbidden, name="forbidden"),
 ]

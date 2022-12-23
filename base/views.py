@@ -6,7 +6,8 @@ Views Handler for the Base Application
 """
 
 from django.shortcuts import render, redirect
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Value
+from django.db.models.functions import Concat
 from django.contrib import messages
 from django.utils.html import strip_tags
 from django.http import HttpResponse
@@ -14,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+import xlwt
 import json
 from .tasks import *
 from .models import (
@@ -1188,32 +1190,73 @@ def deleteGlob(request, pk):
 
 @login_required(login_url='login')
 def report(request):
-    userScans = Scan.objects.filter(user=request.user).order_by('-created')
+
+    return render(request, 'base/report.html')
+
+@login_required(login_url='login')
+def exportExcel(request, pk):
+    scan = Scan.objects.get(id=pk)
+
+    response = HttpResponse(content_type='application/ms-excel')
+    response['Content-Disposition'] = 'attachment; filename="byol.xls"'
+
+    wb = xlwt.Workbook(encoding='utf-8')
+    ws = wb.add_sheet(scan.name)
+
+    row_num = 0
+    font_style = xlwt.XFStyle()
+    font_style.font.bold = True
+
+    columns = ['Simulation', 'Variant', 'Severity', 'Objective', 'Binary', 'ATT&CK ID', 'Tactic', 'Technique', 'Sub-technique', 'Detection Status', 'Payload']
+
+    # Populate Headers
+    for col_num in range(len(columns)):
+        ws.write(row_num, col_num, columns[col_num], font_style)
+
+    # Reset font for body
+    font_style = xlwt.XFStyle()
+
+    variants = UserVariant.objects.filter(simulation__Scan__id=scan.pk).annotate(
+        binary=Concat('Variant__Technique__name', Value('.exe')),
+        attackID=Concat('Variant__AttackSubTechnique__AttackTechnique__AttackTactic__attackid', Value(':'), 'Variant__AttackSubTechnique__AttackTechnique__attackid', 'Variant__AttackSubTechnique__attackid'),
+    )
+    rows = variants.values_list('simulation__name', 'name', 'Variant__severity', 'Variant__Objective__name', 'binary', 'attackID', 'Variant__AttackSubTechnique__AttackTechnique__AttackTactic__name', 'Variant__AttackSubTechnique__AttackTechnique__name', 'Variant__AttackSubTechnique__name', 'detected', 'payload')
+    for row in rows:
+        row_num += 1
+        for col_num in range(len(row)):
+            ws.write(row_num, col_num, row[col_num], font_style)
+
+    wb.save(response)
+
+    return response
+
+@login_required(login_url='login')
+def exportJson(request, pk):
+    scan = Scan.objects.get(id=pk)
 
     scanList = []
-    for scan in userScans:
-        simulationList = []
+    simulationList = []
 
-        for simulation in scan.simulation_set.all():
-            variantList = []
+    for simulation in scan.simulation_set.all():
+        variantList = []
 
-            for userVariant in simulation.UserVariant.all():
-                tempID = userVariant.Variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid + ":" + userVariant.Variant.AttackSubTechnique.AttackTechnique.attackid
+        for userVariant in simulation.UserVariant.all():
+            tempID = userVariant.Variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid + ":" + userVariant.Variant.AttackSubTechnique.AttackTechnique.attackid
 
-                if userVariant.Variant.AttackSubTechnique.attackid != ".000":
-                     tempID += userVariant.Variant.AttackSubTechnique.attackid
+            if userVariant.Variant.AttackSubTechnique.attackid != ".000":
+                    tempID += userVariant.Variant.AttackSubTechnique.attackid
 
-                globals()[f"variantDict_{userVariant.id}"] = {"name": userVariant.name, "binary": userVariant.Variant.Technique.name + ".exe", "severity": userVariant.Variant.severity, "objective": userVariant.Variant.Objective.name, "attackID": tempID, "payload": userVariant.payload}
+            globals()[f"variantDict_{userVariant.id}"] = {"name": userVariant.name, "binary": userVariant.Variant.Technique.name + ".exe", "severity": userVariant.Variant.severity, "objective": userVariant.Variant.Objective.name, "attackID": tempID, "payload": userVariant.payload}
 
-                variantList.append(globals()[f"variantDict_{userVariant.id}"])
+            variantList.append(globals()[f"variantDict_{userVariant.id}"])
 
-            globals()[f"simulationDict_{simulation.id}"] = {"name": simulation.name, "variants": variantList}
-            simulationList.append(globals()[f"simulationDict_{simulation.id}"])
+        globals()[f"simulationDict_{simulation.id}"] = {"name": simulation.name, "variants": variantList}
+        simulationList.append(globals()[f"simulationDict_{simulation.id}"])
 
-        globals()[f"scanDict_{scan.id}"] = {"name": scan.name, "description": scan.description, "simulations": simulationList}
-        scanList.append(globals()[f"scanDict_{scan.id}"])
+    globals()[f"scanDict_{scan.id}"] = {"name": scan.name, "description": scan.description, "updated": scan.updated, "created": scan.created, "simulations": simulationList}
+    scanList.append(globals()[f"scanDict_{scan.id}"])
 
-    return HttpResponse(json.dumps(scanList), content_type="application/json")
+    return HttpResponse(json.dumps(scanList, indent=4, default=str), content_type="application/json")
 
 def forbidden(request):
     return render(request, 'base/forbidden.html')
