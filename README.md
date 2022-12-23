@@ -41,9 +41,11 @@ $ Set-NetConnectionProfile -NetworkCategory Private
 ```
 
 ## Usage
-**NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. Only use Local Admin Account as the user credentials!
+**NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. 
+> ❗ Only use Local Admin Account as the user credentials!
 
-**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. byol.dll, byol.exe, byol.js... do not have defensive capabilities and will be flagged by AV vendors. It is recommended to disable any AV solutions before performing a scan simulation.
+**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. byol.dll, byol.exe, byol.js etc do not have defensive capabilities and will be flagged by AV vendors. 
+> ❗ It is recommended to disable any AV solutions before performing a scan simulation.
 
 ## Technique Coverage
 | LOLBins | Variants | Objectives |
