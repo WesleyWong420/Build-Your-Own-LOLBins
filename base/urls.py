@@ -77,5 +77,7 @@ urlpatterns = [
     path('update-glob/<str:pk>/', views.updateGlob, name="update-glob"),
     path('delete-glob/<str:pk>/', views.deleteGlob, name="delete-glob"),
 
+    path('report/', views.report, name="report"),
+
     path('forbidden/', views.forbidden, name="forbidden"),
 ]

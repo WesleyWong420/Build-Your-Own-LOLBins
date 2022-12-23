@@ -9,10 +9,12 @@ from django.shortcuts import render, redirect
 from django.db.models import Q, Count
 from django.contrib import messages
 from django.utils.html import strip_tags
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+import json
 from .tasks import *
 from .models import (
     Scan, 
@@ -1183,6 +1185,35 @@ def deleteGlob(request, pk):
         return redirect('variant', pk=glob.Technique.id)
 
     return render(request, 'base/delete.html', {'obj': glob})
+
+@login_required(login_url='login')
+def report(request):
+    userScans = Scan.objects.filter(user=request.user).order_by('-created')
+
+    scanList = []
+    for scan in userScans:
+        simulationList = []
+
+        for simulation in scan.simulation_set.all():
+            variantList = []
+
+            for userVariant in simulation.UserVariant.all():
+                tempID = userVariant.Variant.AttackSubTechnique.AttackTechnique.AttackTactic.attackid + ":" + userVariant.Variant.AttackSubTechnique.AttackTechnique.attackid
+
+                if userVariant.Variant.AttackSubTechnique.attackid != ".000":
+                     tempID += userVariant.Variant.AttackSubTechnique.attackid
+
+                globals()[f"variantDict_{userVariant.id}"] = {"name": userVariant.name, "binary": userVariant.Variant.Technique.name + ".exe", "severity": userVariant.Variant.severity, "objective": userVariant.Variant.Objective.name, "attackID": tempID, "payload": userVariant.payload}
+
+                variantList.append(globals()[f"variantDict_{userVariant.id}"])
+
+            globals()[f"simulationDict_{simulation.id}"] = {"name": simulation.name, "variants": variantList}
+            simulationList.append(globals()[f"simulationDict_{simulation.id}"])
+
+        globals()[f"scanDict_{scan.id}"] = {"name": scan.name, "description": scan.description, "simulations": simulationList}
+        scanList.append(globals()[f"scanDict_{scan.id}"])
+
+    return HttpResponse(json.dumps(scanList), content_type="application/json")
 
 def forbidden(request):
     return render(request, 'base/forbidden.html')
