@@ -10,14 +10,19 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 
 ## Featues
 * LOLBins Chaining
-* Self-Cleanup
+* Self-Cleanup & Auto Destruct
 * Commandline Obfuscation
   * Globufscation Wildcards
   * Character Substitution
 * Customizable Payloads
 * Custom Templates
 * APT Procedural Examples
+  * Astaroth Infection Chain
+  * Lazarus Infection Chain
+  * APT 37 STEEP#MAVERICK Persistence Chain
 * MITRE ATT&CK Framework Support
+* Executive Report
+* Exportable Telemetry JSON Data
 
 ## Installation
 The technical requirements of this project are:
