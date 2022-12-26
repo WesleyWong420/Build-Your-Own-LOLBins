@@ -25,7 +25,7 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 * Exportable Telemetry JSON Data
 
 | 📚 Documentation | 🦜 Releases |
-| ---------------- | ------------ |
+| :--------------: | :----------: |
 | [Link](./Documentation.MD) | [Link](https://github.com/WesleyWong420/Build-Your-Own-LOLBins/releases) |
 
 ## Installation
