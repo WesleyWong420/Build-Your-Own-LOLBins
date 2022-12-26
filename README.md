@@ -84,6 +84,18 @@ Powershell.exe | 4 | `Execute`
 4. Download Encoded Payload `header.png` via Wmic.exe
 5. Decode Final Payload via Certutil.exe
 
+### **Astaroth - Fileless Malware Campaign Spreading Astaroth Malware**
+1. Dropper downloads a remote VBScript to disk via Bitsadmin.exe
+2. Malicious VBScript is copied to ADS and immediately wiped from disk
+3. Cscript.exe executes the VBScript from ADS to download `mozsqlite3.dll`
+4. `mozsqlite3.dll` containing Astaroth Malware is side-loaded via Rundll32.exe or Extexport.exe
+
+### **Lazarus - LolZarus: Lazarus Group Incorporating Lolbins into Campaigns**
+1. Expand.exe copies Wscript.exe laterally to masquerades as WindowsMediaPlayerVxEncdSrv.exe
+2. Base64 encoded download cradle transfers malicious VBScript masquerading as `WMVxEncd.vbs`
+3. Execution of VBScript is proxied via Forfiles.exe which injects DLL reflectively to download `wuaueng.dll`
+4. Wuauclt.exe is used as system binary proxy execution to load `wuaueng.dll`
+
 ## To-Do
 - [X] Export Report + JSON
 - [X] WinRM Exceptions
