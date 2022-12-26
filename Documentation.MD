@@ -4,9 +4,9 @@ This documentation outlines all the basic tutorials for getting started with Bui
 ## Table of Contents
 - [Getting Started](#Getting%20Started)
 - [Scan](#Scan)
-    + [Temp](#Temp)
-    - Temp
-        + Temp
+    - [Create Scan](#Create%20Scan)
+        + [Adding Simulation](#Adding%20Simulation)
+    + [Launch Scan](#Launch%20Scan)
 
 ## Getting Started
 | Username | Password | Role          |
@@ -15,41 +15,9 @@ This documentation outlines all the basic tutorials for getting started with Bui
 | user     | user     | Default User  |
 
 ## Scan
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
-| Username | Password | Role          |
-|:--------:|:--------:|:-------------:|
-| admin    | admin    | Administrator |
-| user     | user     | Default User  |
 
-### Temp
+### Create Scan
+
+#### Adding Simulation
+
+### Launch Scan
