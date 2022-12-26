@@ -17,9 +17,9 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 * Customizable Payloads
 * Custom Templates
 * APT Procedural Examples
+  * APT 37 Persistence Chain
   * Astaroth Infection Chain
   * Lazarus Infection Chain
-  * APT 37 STEEP#MAVERICK Persistence Chain
 * MITRE ATT&CK Framework Support
 * Executive Report
 * Exportable Telemetry JSON Data
