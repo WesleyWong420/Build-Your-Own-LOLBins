@@ -51,6 +51,8 @@ $ Set-NetConnectionProfile -NetworkCategory Private
 **NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. byol.dll, byol.exe, byol.js etc do not have defensive capabilities and will be flagged by AV vendors. 
 > Although not mandatory, it is recommended to disable any AV solutions before performing a scan simulation!
 
+[Tutorial](./Documentation.MD)
+
 ## Technique Coverage
 | LOLBins | Variants | Objectives |
 |:-----|:---------:|:-----------|
