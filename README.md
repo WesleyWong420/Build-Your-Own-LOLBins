@@ -100,3 +100,14 @@ Powershell.exe | 4 | `Execute`
 - [X] Globfuscation
 - [X] Export Report + JSON
 - [X] WinRM Exceptions
+
+## Screenshots
+![](./static/screenshots/1.png)
+![](./static/screenshots/2.png)
+![](./static/screenshots/3.png)
+![](./static/screenshots/4.png)
+![](./static/screenshots/5.png)
+![](./static/screenshots/6.png)
+![](./static/screenshots/7.png)
+![](./static/screenshots/8.png)
+![](./static/screenshots/9.png)
