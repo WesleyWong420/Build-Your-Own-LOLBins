@@ -1,4 +1,4 @@
-# Build-Your-Own-LOLBins Documentation
+# Build Your Own LOLBins Documentation
 This documentation outlines all the basic tutorials for getting started with Build Your Own LOLBins (BYOL).
 
 ## Table of Contents
@@ -7,6 +7,10 @@ This documentation outlines all the basic tutorials for getting started with Bui
     - [Create Scan](#Create%20Scan)
         + [Adding Simulation](#Adding%20Simulation)
     + [Launch Scan](#Launch%20Scan)
+- [Template](#Template)
+- [Library](#Library)
+- [Report](#Report)
+- [Admin Management](#Admin%20Management)
 
 ## Getting Started
 | Username | Password | Role          |
@@ -21,3 +25,11 @@ This documentation outlines all the basic tutorials for getting started with Bui
 #### Adding Simulation
 
 ### Launch Scan
+
+## Template
+
+## Library
+
+## Report
+
+## Admin Management
