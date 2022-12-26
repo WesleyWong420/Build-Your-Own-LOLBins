@@ -102,12 +102,12 @@ Powershell.exe | 4 | `Execute`
 - [X] WinRM Exceptions
 
 ## Screenshots
-![](./static/screenshots/1.png)
-![](./static/screenshots/2.png)
-![](./static/screenshots/3.png)
-![](./static/screenshots/4.png)
-![](./static/screenshots/5.png)
-![](./static/screenshots/6.png)
-![](./static/screenshots/7.png)
-![](./static/screenshots/8.png)
-![](./static/screenshots/9.png)
+![](./base/static/screenshots/1.png)
+![](./base/static/screenshots/2.png)
+![](./base/static/screenshots/3.png)
+![](./base/static/screenshots/4.png)
+![](./base/static/screenshots/5.png)
+![](./base/static/screenshots/6.png)
+![](./base/static/screenshots/7.png)
+![](./base/static/screenshots/8.png)
+![](./base/static/screenshots/9.png)
