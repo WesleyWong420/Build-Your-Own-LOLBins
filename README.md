@@ -93,7 +93,7 @@ Powershell.exe | 4 | `Execute`
 ### **Lazarus - LolZarus: Lazarus Group Incorporating Lolbins into Campaigns**
 1. Expand.exe copies Wscript.exe laterally to masquerades as WindowsMediaPlayerVxEncdSrv.exe
 2. Base64 encoded download cradle transfers malicious VBScript masquerading as `WMVxEncd.vbs`
-3. Execution of VBScript is proxied via Forfiles.exe which injects DLL reflectively to download `wuaueng.dll`
+3. Execution of VBScript is proxied via Forfiles.exe which implements Reflective DLL Injection to download `wuaueng.dll`
 4. Wuauclt.exe is used as system binary proxy execution to load `wuaueng.dll`
 
 ## To-Do
