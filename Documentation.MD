@@ -2,9 +2,9 @@
 This documentation outlines all the basic tutorials for getting started with Build Your Own LOLBins (BYOL).
 
 ## Table of Contents
-- [Getting Started](#Getting Started)
-- [Scans](#Scans)
-    + Temp
+- [Getting Started](#Getting%20Started)
+- [Scan](#Scan)
+    + [Temp](#Temp)
     - Temp
         + Temp
 
@@ -14,4 +14,42 @@ This documentation outlines all the basic tutorials for getting started with Bui
 | admin    | admin    | Administrator |
 | user     | user     | Default User  |
 
-## Scans
+## Scan
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+| Username | Password | Role          |
+|:--------:|:--------:|:-------------:|
+| admin    | admin    | Administrator |
+| user     | user     | Default User  |
+
+### Temp
