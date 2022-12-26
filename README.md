@@ -102,12 +102,29 @@ Powershell.exe | 4 | `Execute`
 - [X] WinRM Exceptions
 
 ## Screenshots
+### **Home Page**
 ![](./base/static/screenshots/1.png)
+
+### **Scans**
 ![](./base/static/screenshots/2.png)
+
+### **Scan Details & Simulations**
 ![](./base/static/screenshots/3.png)
+
+### **Simulation & Technique Details**
 ![](./base/static/screenshots/4.png)
+
+### **Threat Templates**
 ![](./base/static/screenshots/5.png)
+
+### **Technique Library**
 ![](./base/static/screenshots/6.png)
+
+### **Variants Details**
 ![](./base/static/screenshots/7.png)
+
+### **Report Dashboard & Summary**
 ![](./base/static/screenshots/8.png)
+
+### **Admin Management**
 ![](./base/static/screenshots/9.png)
