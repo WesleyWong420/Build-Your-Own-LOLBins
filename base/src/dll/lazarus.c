@@ -1,5 +1,5 @@
-// For x64 compile with: x86_64-w64-mingw32-gcc windows_dll.c -shared -o output.dll
-// For x86 compile with: i686-w64-mingw32-gcc windows_dll.c -shared -o output.dll
+// For x64 compile with: x86_64-w64-mingw32-gcc lazarus.c -shared -o lazarus.dll
+// For x86 compile with: i686-w64-mingw32-gcc lazarus.c -shared -o lazarus.dll
 
 #include <windows.h>
 BOOL WINAPI DllMain (HANDLE hDll, DWORD dwReason, LPVOID lpReserved){
