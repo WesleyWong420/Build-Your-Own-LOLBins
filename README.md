@@ -97,5 +97,6 @@ Powershell.exe | 4 | `Execute`
 4. Wuauclt.exe is used as system binary proxy execution to load `wuaueng.dll`
 
 ## To-Do
+- [X] Globfuscation
 - [X] Export Report + JSON
 - [X] WinRM Exceptions
