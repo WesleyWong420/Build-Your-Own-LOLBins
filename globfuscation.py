@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-#python3 .\envy.py "C:\\Windows\\System32\\calc.exe"
+#python .\globfuscation.py "C:\\Windows\\System32\\calc.exe"
 
 import os
 import pathlib
