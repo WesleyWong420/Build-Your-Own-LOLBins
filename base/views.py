@@ -15,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
+from .utilities import *
 import xlwt
 import json
 from .tasks import *
@@ -1192,12 +1193,19 @@ def deleteGlob(request, pk):
 def report(request):
     userScans = Scan.objects.filter(user=request.user).order_by('created')
 
-    threat_count = 0
-    blocked_count = 0
-    compromised_count = 0
-    untested_count = 0
+    action_list = []
+    blocked_list = []
+    compromised_list = []
+    untested_list = []
+    score_list = []
 
     for scan in userScans:
+        threat_count = 0
+        blocked_count = 0
+        compromised_count = 0
+        untested_count = 0
+        score_count = 0
+
         for simulation in scan.simulation_set.all():
             for userVariant in simulation.UserVariant.all():
                 threat_count += 1
@@ -1209,10 +1217,22 @@ def report(request):
                 else:
                     untested_count += 1
 
-    score = (compromised_count / (threat_count - untested_count)) * 100
+        if threat_count - untested_count == 0:
+            score_count = 0
+        else:
+            score_count = (compromised_count / (threat_count - untested_count)) * 100
+            score_count = round(score_count)
+
+        action_list.append(threat_count)
+        blocked_list.append(blocked_count)
+        compromised_list.append(compromised_count)
+        untested_list.append(untested_count)
+        score_list.append(score_count)
+
+    score = (addIndex(compromised_list) / (addIndex(action_list) - addIndex(untested_list))) * 100
     score = round(score)
 
-    context = {'threat_count': threat_count, 'blocked_count': blocked_count, 'compromised_count': compromised_count, 'untested_count': untested_count, 'score': score, 'userScans': userScans}
+    context = {'threat_count': addIndex(action_list), 'blocked_count': addIndex(blocked_list), 'compromised_count': addIndex(compromised_list), 'untested_count': addIndex(untested_list), 'score': score, 'score_list': score_list, 'userScans': userScans, 'action_list': action_list}
 
     return render(request, 'base/report.html', context)
 

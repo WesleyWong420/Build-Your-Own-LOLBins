@@ -2,6 +2,7 @@
 
 {% block content %}
 {% load static %}
+{% load maps_tags %}
 
 <main class="auth layout">
     <div class="container-column">
@@ -60,7 +61,8 @@
                     <tr>
                         <th scope="col">ID</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Target</th>
+                        <th scope="col">Action Count</th>
+                        <th scope="col">Breached Score</th>
                         <th scope="col">Status</th>
                         <th scope="col">Export As</th>
                     </tr>
@@ -71,8 +73,17 @@
                             <tr>
                                 <td style="width: 6rem;">{{forloop.counter}}</td>
                                 <td style="font-weight: 500">{{scan.name}}</td>
-                                <td style="width: 15rem;"">{{scan.ip}}</td>
-                                <td style="width: 15rem;">{{scan.status}}</td>
+                                <td style="width: 15rem;"">{{action_list|index:forloop.counter0}}</td>
+                                <td style="width: 15rem;"">{{score_list|index:forloop.counter0}}%</td>
+
+                                {% if scan.status == 'STOPPED' %}
+                                    <td style="width: 15rem;color: #F78F8F;font-weight: 500">{{scan.status}}</td>
+                                {% elif scan.status == 'COMPLETED'%}
+                                    <td style="width: 15rem;color: #9EEE25;font-weight: 500">{{scan.status}}</td>
+                                {% else %}
+                                    <td style="width: 15rem;color: #FCC419;font-weight: 500">{{scan.status}}</td>
+                                {% endif %}
+
                                 <td style="width: 13rem;">
                                     <a href="{% url 'export-excel' scan.id %}" style="padding-right: 2rem">Excel</a>
                                     <a href="{% url 'export-json' scan.id %}">JSON</a>
