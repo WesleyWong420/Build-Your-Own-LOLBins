@@ -5,8 +5,97 @@
 
 <main class="auth layout">
     <div class="container-column">
-        <a href="{% url 'export-excel' 36 %}" class="btn btn--link">Excel</a>
-        <a href="{% url 'export-json' 36 %}" class="btn btn--link">JSON</a>
+        <div class="roomListRoom__square">
+            <div>
+                <h2>Summary Dashboard</h2>
+            </div>
+
+            <div class="roomListRoom__flex">
+                <div style="margin-left: 8rem; margin-right: 9rem; text-align: center;">
+                    {% if score < 60 %}
+                      <div class="pie animate" style="--p:{{score}};--b:15px;--c:#32CD32"> {{score}}%</div>
+                    {% elif score < 90 %}
+                      <div class="pie animate" style="--p:{{score}};--b:15px;--c:#ffbf00"> {{score}}%</div>
+                    {% elif score >= 90 %}
+                      <div class="pie animate" style="--p:{{score}};--b:15px;--c:#d2222d"> {{score}}%</div>
+                    {% endif %}
+                    <h3>Breached Simulation Score</h3>
+                </div>
+
+                <div style="margin-left: 5rem; margin-right: 7rem; text-align: center;;">
+                  <img src="{% static 'images/bug.png' %}" style="width: 3rem; height: 3rem;"/>
+                  <h2 style="margin-bottom: 0rem; font-size: 3rem;">{{threat_count}}</h2>
+                  <h4 style="margin-top: -1rem;">Total Threats</h4>
+                </div>
+
+                <div style="margin-left: 5rem; margin-right: 7rem; text-align: center;;">
+                  <img src="{% static 'images/protected.png' %}" style="width: 3rem; height: 3rem;"/>
+                  <h2 style="margin-bottom: 0rem; font-size: 3rem;">{{blocked_count}}</h2>
+                  <h4 style="margin-top: -1rem;">Threats Blocked</h4>
+                </div>
+
+                <div style="margin-left: 5rem; margin-right: 7rem; text-align: center;;">
+                  <img src="{% static 'images/compromised.png' %}" style="width: 3rem; height: 3rem;"/>
+                  <h2 style="margin-bottom: 0rem; font-size: 3rem;">{{compromised_count}}</h2>
+                  <h4 style="margin-top: -1rem;">Compromised Threats</h4>
+                </div>
+
+                <div style="margin-left: 5rem; margin-right: 7rem; text-align: center;;">
+                    <img src="{% static 'images/neutral.png' %}" style="width: 3.5rem; height: 3.5rem;"/>
+                    <h2 style="margin-bottom: 0rem; font-size: 3rem;">{{untested_count}}</h2>
+                    <h4 style="margin-top: -1rem;">Untested Threats</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="roomListRoom__square">
+            <div>
+                <h2 style="margin-bottom: 0rem;">Export Reports</h2>
+                <p style="margin-bottom: 2rem;">{{userScans.all.count}} Scans Available</p>
+            </div>
+
+            <!-- Scans List Start --> 
+            <table id="scan-table" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Target</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Export As</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if userScans.all.count != 0 %}
+                        {% for scan in userScans %}
+                            <tr>
+                                <td style="width: 6rem;">{{forloop.counter}}</td>
+                                <td style="font-weight: 500">{{scan.name}}</td>
+                                <td style="width: 15rem;"">{{scan.ip}}</td>
+                                <td style="width: 15rem;">{{scan.status}}</td>
+                                <td style="width: 13rem;">
+                                    <a href="{% url 'export-excel' scan.id %}" style="padding-right: 2rem">Excel</a>
+                                    <a href="{% url 'export-json' scan.id %}">JSON</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+            <!-- Scan List End -->
+
+            <script>
+              $(document).ready(function () {
+              $('#scan-table').DataTable({
+                  "searching": false,
+                  "info": false,
+                  "lengthChange": false,
+                  "paginate": false
+              });
+              $('.dataTables_length').addClass('bs-select');
+              });
+            </script>
+        </div>
     </div>
 </main>
 

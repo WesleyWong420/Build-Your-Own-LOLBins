@@ -1190,15 +1190,39 @@ def deleteGlob(request, pk):
 
 @login_required(login_url='login')
 def report(request):
+    userScans = Scan.objects.filter(user=request.user).order_by('created')
 
-    return render(request, 'base/report.html')
+    threat_count = 0
+    blocked_count = 0
+    compromised_count = 0
+    untested_count = 0
+
+    for scan in userScans:
+        for simulation in scan.simulation_set.all():
+            for userVariant in simulation.UserVariant.all():
+                threat_count += 1
+
+                if userVariant.detected == False:
+                    compromised_count += 1
+                elif userVariant.detected == True:
+                    blocked_count += 1
+                else:
+                    untested_count += 1
+
+    score = (compromised_count / (threat_count - untested_count)) * 100
+    score = round(score)
+
+    context = {'threat_count': threat_count, 'blocked_count': blocked_count, 'compromised_count': compromised_count, 'untested_count': untested_count, 'score': score, 'userScans': userScans}
+
+    return render(request, 'base/report.html', context)
 
 @login_required(login_url='login')
 def exportExcel(request, pk):
     scan = Scan.objects.get(id=pk)
 
+    file_name = scan.name.replace(" ", "_")
     response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="byol.xls"'
+    response['Content-Disposition'] = f'attachment; filename="{file_name}.xls"'
 
     wb = xlwt.Workbook(encoding='utf-8')
     ws = wb.add_sheet(scan.name)
