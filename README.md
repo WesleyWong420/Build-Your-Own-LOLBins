@@ -25,6 +25,10 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 * Exportable Telemetry JSON Data
 
 ## Installation
+| Documentation | Releases |
+| ------------- | -------- |
+| 📚 [Documentation](./Documentation.MD) | 🦜 [Releases](https://github.com/WesleyWong420/Build-Your-Own-LOLBins/releases) |
+
 The technical requirements of this project are:
 * Python 3.10.9
 * Windows 10 64-bit (Victim Virtual Machine)
