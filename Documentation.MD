@@ -76,3 +76,11 @@ There are mainly 3 types of Scan Templates:
 1. On the **Templates** tab, select one of the template types and click **ADD**.
 2. Select the scan to clone from.
 3. Click <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Template-%2371c6dd">
+
+### Mobilizing Template
+1. On the top right of a template, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Simulate%20Now-%2371c6dd">
+2. Enter details for the Windows 10 target machine:
+    * **IP Address**: Ensure that the target machine has Internet connection to download payloads from the repo.
+    * **Username**: Use a Local Administrator account to enable Interactive Logon session. 
+    * **Password**: User credentials for authentication.
+3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
