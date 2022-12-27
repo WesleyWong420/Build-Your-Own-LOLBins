@@ -95,6 +95,14 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
 2. Enter details for the new technique/binary, these attributes will affect how the technique appear in the search bar:
     * **Objectives**: Select one or more than one execution purpose.
     * **(Optional) APT Groups**: Select any APT groups based on the prevelance of usage and adoption.
+3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Technique-%2371c6dd">
 
 ### Adding Variant
-1. 
+1. On the **Library** tab, click on the **Technique Name** of any binary to view the variant details.
+2. To add a new variant, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20New%20Variant-%2371c6dd">
+3. Enter details for the new variant. Some attributes must first be created in [Admin Management](#Admin%20Management) before it can be selected here:
+    * **Severity**: Threat level of the variant. Available options are : **HIGH**, **MEDIUM** & **LOW**
+    * **ATT&CK Sub-Technique**: Sub-techniques are automatically mapped to it's parent Technique and Tactic.
+    * **Objectives**: Select one execution purpose.
+    * **Generic Payload**: Generic Payload acts as a reference to improve payload customization, and will not be executed in every occasion. Command arguments are denoted with the format `#{arg}`.
+    * **Default Payload**: The primary payload that will be copied and used when a variant is added to a simulation or scan. It is a mirror to the Generic Payload, but with the command arguments substituted with actual process name or file name. All default payloads are non-malicious and will only execute `calc.exe` as a Proof-of-Concept.  
