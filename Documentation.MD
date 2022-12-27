@@ -40,6 +40,8 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * **Password**: User credentials for authentication.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
 
+![](./base/static/gifs/1.gif)
+
 ### Adding Simulation
 1. On the bottom of an existing scan, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Add%20Simulation-%23696d97">
 2. Modify the newly added simulation by clicking the 🖊 button:
@@ -125,6 +127,8 @@ python .\globfuscation.py "C:\\Windows\\System32\\calc.exe"
 BYOL provides the option to export scan results in 2 formats: **Excel** and **JSON**. 
 
 **NOTE:** The Excel file downloaded may be blocked by certain Web Browsers or Antivirus vendors, because it contains actual payload used in the simulations. This is in fact false positive, and rest assure that it is not a malicious document.
+
+![](./base/static/screenshots/8.png)
 
 ## Summary
 All simulations statistics are summarised under the **Summary Dashboard** of the **Reports** tab. The **Breached Simulation Score** is calculated based on the following formula:
