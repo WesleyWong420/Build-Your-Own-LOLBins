@@ -49,6 +49,8 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * **Add Attacker Objective**: Select a technique from the library.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Simulation-%2371c6dd">
 
+![](./base/static/gifs/2.gif)
+
 ### Editing Simulation
 1. Expand the offcanvas by clicking on the objective box.
 2. Modify the technique by clicking the 🖊 button beside of **SIMULATION DETAILS**:
@@ -57,6 +59,8 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * (Optional) **Chain To Previous**: When enabled, the current technique will execute if the previous one succedeed. Disabled by default, only enable if the payload has dependencies from the previous technique.
     * (Optional) **High Integrity Process**: Run the payload under High Integrity context. Disabled by default, only enable for privileged actions such as Credentials Dumping and Process Injection.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Details-%2371c6dd">
+
+![](./base/static/gifs/3.gif)
 
 ### Launching Scan
 1. The current status must be one of the following for a scan to initiate:
@@ -69,6 +73,8 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 1. To terminate a scan in-progress, the status must be **RUNNING**:
     * **RUNNING**: Scanning in progress, results are updated in real-time. Refresh required.
 2. Click on the status display-bar located on the top-right corner, and the scan will be halted automatically on the next interval.
+
+![](./base/static/gifs/4.gif)
 
 ## Template
 Scan templates are granular configuration settings specified by the user. It is essentially a snapshot of all the simulations and techniques contained in a scan at the time of cloning. This allows user to replicate scans easily and make changes to existing scans without compromising the original backup.
