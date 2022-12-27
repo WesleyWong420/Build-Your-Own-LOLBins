@@ -7,7 +7,10 @@ This documentation outlines all the basic tutorials for getting started with Bui
     - [Creating Scan](#Creating%20Scan)
         + [Adding Simulation](#Adding%20Simulation)
     + [Launching Scan](#Launching%20Scan)
+        + [Scan Status](#Scan%20Status)
 - [Template](#Template)
+    - [Cloning Scan](#Cloning%20Scan)
+    - [Creating Scan](#Creating%20Scan)
 - [Library](#Library)
 - [Report](#Report)
 - [Admin Management](#Admin%20Management)
@@ -25,16 +28,4 @@ All created or completed scans can be found in the **Scan Dashboard** under the 
 
 ### Creating Scan
 **To create a new scan**
-1. Click ![Python](https://img.shields.io/badge/python_3.10.9-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-
-#### Adding Simulation
-
-### Launching Scan
-
-## Template
-
-## Library
-
-## Report
-
-## Admin Management
+1. Click on <span style="background-color: #71c6dd;color: #3f4156;border-radius: 5px;padding: 0.1rem 0.2rem;"> + Create Scan</span>.
