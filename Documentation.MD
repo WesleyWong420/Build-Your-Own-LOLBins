@@ -137,6 +137,7 @@ Certain attributes like **APT Groups**, **Objectives**, **ATT&CK Tactics**, **AT
 
 ### Adding ATT&CK TTPs \[Admin]
 Majority of ATT&CK TTPs consists of 3 layers: **Tactics**, **Techniques** and **Sub-Techniques**. When [Adding a Variant](#Adding-Variant-Admin), **Sub-Techniques** are automatically mapped to it's Parent Technique and Tactic when displayed in a hierarchy tree.
+
 ![](./base/static/screenshots/Level3.png)
 
 To create an ATT&CK TTP that consists of only 2 Levels (technique without any sub-techniques), there are special rules that applies:
@@ -146,4 +147,5 @@ To create an ATT&CK TTP that consists of only 2 Levels (technique without any su
     * **ATT&CK ID**: Enter `.000` as the ID.
     * **Parent Technique**: Select the Parent Technique from the dropdown list.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Sub--Technique-%2371c6dd">
+
 ![](./base/static/screenshots/Level2.png)
