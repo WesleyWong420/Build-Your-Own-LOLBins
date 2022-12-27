@@ -44,7 +44,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 
 ### Editing Simulation Payloads
 1. Expand the offcanvas by clicking on the objective box.
-2. Modify the technique by clicking the 🖊 button beside of `SIMULATION DETAILS`:
+2. Modify the technique by clicking the 🖊 button beside of **SIMULATION DETAILS**:
     * **Payload**: Main payload for threat simulation. Please include `.exe` as the extension for LOLBins for globufscation to work.
     * (Optional) **Cleanup**: Command to wipe leftover artificats. Also used as verification to lower false positive rate. Optional but highly encouraged to include. 
     * (Optional) **Chain To Previous**: When enabled, the current technique will execute if the previous one succedeed. Disabled by default, only enable if the payload has dependencies from the previous technique.
@@ -59,7 +59,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 2. To start the scan, click on the status display-bar located on the top-right corner.
 
 ### Terminating Scan
-1. To terminate a scan in-progress, the status must be `RUNNING`:
+1. To terminate a scan in-progress, the status must be **RUNNING**:
     * **RUNNING**: Scanning in progress, results are updated in real-time. Refresh required.
 2. Click on the status display-bar located on the top-right corner, and the scan will be halted automatically on the next interval.
 
@@ -71,3 +71,8 @@ There are mainly 3 types of Scan Templates:
 * **APT**: Specialized templates that simulates the attack chain of Advanced Persistent Threat (APT) groups. Accessible by everyone, but only Administrators can create or modify such template.
 * **Community**: Public templates that are shared among all users. Accessible by everyone and can be published by anyone, but only the template owner has Edit permission.
 * **Private**: Private templates that are only accessible by the owner. Acts as a backup for scans.
+
+### Cloning Scan
+1. On the **Templates** tab, select one of the template types and click **ADD**.
+2. Select the scan to clone from.
+3. Click <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Template-%2371c6dd">
