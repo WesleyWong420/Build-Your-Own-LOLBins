@@ -100,6 +100,8 @@ There are mainly 3 types of Scan Templates:
 ## Library
 The threat library consisting of **24 Unique LOLBins** and **49 Variants** is accessible publicly for browsing, but can only be modified by an Administrator. The built-in search bar allows user to query techniques based on attributes like **Binary Name**, **Objectives** and **APT Groups**.
 
+![](./base/static/gifs/6.gif)
+
 ### Adding Technique \[Admin]
 1. On the **Library** tab, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Technique-%2371c6dd">
 2. Enter details for the new technique/binary, these attributes will affect how the technique appear in the search bar:
@@ -124,6 +126,8 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
     * **MITRE ATT&CK**: Reference link to MITRE ATT&CK Framework.
     * **LOLBAS Project**: Reference link to LOLBAS Project.
 4. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Variant-%2371c6dd">
+
+![](./base/static/screenshots/10.png)
 
 ### Adding Globfuscation \[Admin]
 Due to the time complexity associated, finding all the matching wildcards (Globfuscation) of a LOLBin cannot be performed on runtime and must be done seperately in advanced on a Windows Machine with Python 3.11.X installed using [globfuscation.py](./globfuscation.py).
