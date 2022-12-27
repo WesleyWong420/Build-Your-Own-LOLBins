@@ -15,6 +15,7 @@ This documentation outlines all the basic tutorials for getting started with Bui
 - [Library](#Library)
     - [Adding Technique](#Adding-Technique-Admin)
     - [Adding Variant](#Adding-Variant-Admin)
+    - [Adding Globfuscation](#Adding-Globfuscation)
 - [Report](#Report)
 - [Admin Management](#Admin-Management)
 
@@ -112,8 +113,14 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
     * **LOLBAS Project**: Reference link to LOLBAS Project.
 4. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Variant-%2371c6dd">
 
-### Adding Globfuscation
-Due to the time complexity associated, finding all the matching wildcards (Globfuscation) of a LOLBin must be performed seperately on a Windows Machine with Python 3.11.X installed using [globfuscation.py](./globfuscation.py).
+### Adding Globfuscation \[Admin]
+Due to the time complexity associated, finding all the matching wildcards (Globfuscation) of a LOLBin cannot be performed on runtime and must be done seperately in advanced on a Windows Machine with Python 3.11.X installed using [globfuscation.py](./globfuscation.py).
 ```
 python .\globfuscation.py "C:\\Windows\\System32\\calc.exe"
+```
+
+## Report
+BYOL provides the option to export scan results in 2 formats: **Excel** and **JSON**. The **Breached Simulation Score** is calculated based on the following formula:
+```
+compromised_threats / (compromised_threats + blocked_threats)
 ```
