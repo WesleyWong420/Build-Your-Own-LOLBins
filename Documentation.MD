@@ -68,6 +68,6 @@ Scan templates are granular configuration settings specified by the user. It is 
 
 ### Template Types
 There are mainly 3 types of Scan Templates:
-    * **APT**: Specialized templates that simulates the attack chain of Advanced Persistent Threat (APT) groups. Accessible by everyone, but only Administrators can create or modify such template.
-    * **Community**: Public templates that are shared among all users. Accessible by everyone and can be published by anyone, but only the template owner has Edit permission.
-    * **Private**: Private templates that are only accessible by the owner. Acts as a backup for scans.
+* **APT**: Specialized templates that simulates the attack chain of Advanced Persistent Threat (APT) groups. Accessible by everyone, but only Administrators can create or modify such template.
+* **Community**: Public templates that are shared among all users. Accessible by everyone and can be published by anyone, but only the template owner has Edit permission.
+* **Private**: Private templates that are only accessible by the owner. Acts as a backup for scans.
