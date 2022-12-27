@@ -90,6 +90,8 @@ There are mainly 3 types of Scan Templates:
 2. Select one of the existing scans to clone from.
 3. Click <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Template-%2371c6dd">
 
+![](./base/static/gifs/5.gif)
+
 ### Mobilizing Template
 1. On the top right of a template, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Simulate%20Now-%2371c6dd">
 2. Enter details for the newly created scan.
