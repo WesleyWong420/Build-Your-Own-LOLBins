@@ -29,7 +29,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 ### Creating Scan
 1. Click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
 2. Enter details for the Windows 10 target machine:
-    a. **IP Address**: Ensure that the target machine has Internet connection to download payloads from the repo.
-    b. **Username**: Use a Local Administrator account to enable Interactive Logon session. 
-    c. **Password** 
-3. Select `Create Scan`
+    * **IP Address**: Ensure that the target machine has Internet connection to download payloads from the repo.
+    * **Username**: Use a Local Administrator account to enable Interactive Logon session. 
+    * **Password** 
+3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
