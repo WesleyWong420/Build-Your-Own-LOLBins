@@ -4,27 +4,32 @@ This documentation outlines all the basic tutorials for getting started with Bui
 ## Table of Contents
 - [Getting Started](#Getting%20Started)
 - [Scan](#Scan)
-    - [Create Scan](#Create%20Scan)
+    - [Creating Scan](#Creating%20Scan)
         + [Adding Simulation](#Adding%20Simulation)
-    + [Launch Scan](#Launch%20Scan)
+    + [Launching Scan](#Launching%20Scan)
 - [Template](#Template)
 - [Library](#Library)
 - [Report](#Report)
 - [Admin Management](#Admin%20Management)
 
 ## Getting Started
+To access the portal, use one of the following user accounts when prompted for login. The `admin` user has been granted privileged rights for [Admin Management](#Admin%20Management), and contains several scan history for ease of access. To build a scan from scratch, use the `user` account instead.
+
 | Username | Password | Role          |
 |:--------:|:--------:|:-------------:|
 | admin    | admin    | Administrator |
 | user     | user     | Default User  |
 
 ## Scan
+All created or completed scans can be found in the **Scan Dashboard** under the **Scan** tab. All scans are sorted in descending order based on the latest update time.
 
-### Create Scan
+### Creating Scan
+**To create a new scan**
+1. Click ![Python](https://img.shields.io/badge/python_3.10.9-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 
 #### Adding Simulation
 
-### Launch Scan
+### Launching Scan
 
 ## Template
 
