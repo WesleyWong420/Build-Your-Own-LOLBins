@@ -81,10 +81,7 @@ There are mainly 3 types of Scan Templates:
 
 ### Mobilizing Template
 1. On the top right of a template, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Simulate%20Now-%2371c6dd">
-2. Enter details for the Windows 10 target machine:
-    * **IP Address**: Ensure that the target machine has Internet connection to download payloads from the repo.
-    * **Username**: Use a Local Administrator account to enable Interactive Logon session. 
-    * **Password**: User credentials for authentication.
+2. Enter details for the newly created scan.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
 
 ## Library
@@ -101,8 +98,16 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
 1. On the **Library** tab, click on the **Technique Name** of any binary to view the variant details.
 2. To add a new variant, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20New%20Variant-%2371c6dd">
 3. Enter details for the new variant. Some attributes must first be created in [Admin Management](#Admin%20Management) before it can be selected here:
-    * **Severity**: Threat level of the variant. Available options are : **HIGH**, **MEDIUM** & **LOW**
+    * **Severity**: Threat level of the variant. Available options are : **HIGH**, **MEDIUM** & **LOW**.
     * **ATT&CK Sub-Technique**: Sub-techniques are automatically mapped to it's parent Technique and Tactic.
-    * **Objectives**: Select one execution purpose.
-    * **Generic Payload**: Generic Payload acts as a reference to improve payload customization, and will not be executed in every occasion. Command arguments are denoted with the format `#{arg}`.
+    * **Objective**: Select one execution purpose.
+    * **Generic Payload**: Generic Payload only acts as a reference to improve payload customization, and will not be executed in any occasion. Command arguments are denoted with the format `#{arg}`.
     * **Default Payload**: The primary payload that will be copied and used when a variant is added to a simulation or scan. It is a mirror to the Generic Payload, but with the command arguments substituted with actual process name or file name. All default payloads are non-malicious and will only execute `calc.exe` as a Proof-of-Concept.  
+    * **Generic Cleanup**: Cleanup command with interchangable placeholder `#{arg}` to act as a guidance for payload customization.
+    * **Default Cleanup**: The primary cleanup command that is executed at the end of every test cases. Common cleanup operations involves deleting a file or killing a process.
+    * **Description**: Variant description for user reading purposes.
+    * **Detection Guide**: Detection strategy based on MITRE ATT&CK Framework.
+    * **Prevention Guide**: Mitigation strategy based on MITRE ATT&CK Framework.
+    * **MITRE ATT&CK**: Reference link to MITRE ATT&CK Framework.
+    * **LOLBAS Project**: Reference link to LOLBAS Project.
+4. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Variant-%2371c6dd">
