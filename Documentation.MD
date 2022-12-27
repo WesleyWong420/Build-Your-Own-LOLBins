@@ -6,13 +6,15 @@ This documentation outlines all the basic tutorials for getting started with Bui
 - [Scan](#Scan)
     - [Creating Scan](#Creating-Scan)
         + [Adding Simulation](#Adding-Simulation)
-        + [Editing Simulation Payloads](#Editing-Simulation-Payloads)
+        + [Editing Simulation](#Editing-Simulation)
     + [Launching Scan](#Launching-Scan)
     + [Terminating Scan](#Terminating-Scan)
 - [Template](#Template)
     - [Cloning Scan](#Cloning-Scan)
     - [Mobilizing Template](#Mobilizing-Template)
 - [Library](#Library)
+    - [Adding Technique](#Adding-Technique)
+    - [Adding Variant](#Adding-Variant)
 - [Report](#Report)
 - [Admin Management](#Admin-Management)
 
@@ -42,7 +44,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * **Add Attacker Objective**: Select a technique from the library.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Simulation-%2371c6dd">
 
-### Editing Simulation Payloads
+### Editing Simulation
 1. Expand the offcanvas by clicking on the objective box.
 2. Modify the technique by clicking the 🖊 button beside of **SIMULATION DETAILS**:
     * **Payload**: Main payload for threat simulation. Please include `.exe` as the extension for LOLBins for globufscation to work.
@@ -84,3 +86,15 @@ There are mainly 3 types of Scan Templates:
     * **Username**: Use a Local Administrator account to enable Interactive Logon session. 
     * **Password**: User credentials for authentication.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
+
+## Library
+The threat library consisting of **24 Unique LOLBins** and **49 Variants** is accessible publicly for browsing, but can only be modified by an Administrator. The built-in search bar allows user to query techniques based on attributes like **Binary Name**, **Objectives** and **APT Groups**.
+
+### Adding Technique
+1. On the **Library** tab, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Technique-%2371c6dd">
+2. Enter details for the new technique/binary, these attributes will affect how the technique appear in the search bar:
+    * **Objectives**: Select one or more than one execution purpose.
+    * **(Optional) APT Groups**: Select any APT groups based on the prevelance of usage and adoption.
+
+### Adding Variant
+1. 
