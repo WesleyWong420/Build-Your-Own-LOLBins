@@ -17,6 +17,7 @@ This documentation outlines all the basic tutorials for getting started with Bui
     - [Adding Variant](#Adding-Variant-Admin)
     - [Adding Globfuscation](#Adding-Globfuscation)
 - [Report](#Report)
+- [Summary](#Summary)
 - [Admin Management](#Admin-Management)
 
 ## Getting Started
@@ -120,7 +121,14 @@ python .\globfuscation.py "C:\\Windows\\System32\\calc.exe"
 ```
 
 ## Report
-BYOL provides the option to export scan results in 2 formats: **Excel** and **JSON**. The **Breached Simulation Score** is calculated based on the following formula:
+BYOL provides the option to export scan results in 2 formats: **Excel** and **JSON**. 
+
+**NOTE:** The Excel file downloaded may be blocked by certain Web Browsers or Antivirus vendors, because it contains actual payload used in the simulations. This is in fact false positive, and rest assure that it is not a malicious document.
+
+## Summary
+All simulations statistics are summarised under the **Summary Dashboard** of the **Reports** tab. The **Breached Simulation Score** is calculated based on the following formula:
 ```
 compromised_threats / (compromised_threats + blocked_threats)
 ```
+
+## Admin Management
