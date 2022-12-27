@@ -13,8 +13,8 @@ This documentation outlines all the basic tutorials for getting started with Bui
     - [Cloning Scan](#Cloning-Scan)
     - [Mobilizing Template](#Mobilizing-Template)
 - [Library](#Library)
-    - [Adding Technique](#Adding-Technique)
-    - [Adding Variant](#Adding-Variant)
+    - [Adding Technique \[Admin]](#Adding-Technique-Admin)
+    - [Adding Variant \[Admin]](#Adding-Variant-Admin)
 - [Report](#Report)
 - [Admin Management](#Admin-Management)
 
@@ -87,14 +87,14 @@ There are mainly 3 types of Scan Templates:
 ## Library
 The threat library consisting of **24 Unique LOLBins** and **49 Variants** is accessible publicly for browsing, but can only be modified by an Administrator. The built-in search bar allows user to query techniques based on attributes like **Binary Name**, **Objectives** and **APT Groups**.
 
-### Adding Technique \[Admin]\
+### Adding Technique \[Admin]
 1. On the **Library** tab, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Technique-%2371c6dd">
 2. Enter details for the new technique/binary, these attributes will affect how the technique appear in the search bar:
     * **Objectives**: Select one or more than one execution purpose.
     * **(Optional) APT Groups**: Select any APT groups based on the prevelance of usage and adoption.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Technique-%2371c6dd">
 
-### Adding Variant \[Admin]\
+### Adding Variant \[Admin]
 1. On the **Library** tab, click on the **Technique Name** of any binary to view the variant details.
 2. To add a new variant, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20New%20Variant-%2371c6dd">
 3. Enter details for the new variant. Some attributes must first be created in [Admin Management](#Admin%20Management) before it can be selected here:
