@@ -28,7 +28,7 @@ To access the portal, use one of the following user accounts when prompted for l
 All created and completed scans can be found in the **Scan Dashboard** under the **Scan** tab. Scans are sorted in descending order based on the latest update time. Every scan can have multiple simulations, and within each simulations are several layers of techniques/variants/objectives chained together.
 
 ### Creating Scan
-1. Click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
+1. On the Scan Dashboard, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
 2. Enter details for the Windows 10 target machine:
     * **IP Address**: Ensure that the target machine has Internet connection to download payloads from the repo.
     * **Username**: Use a Local Administrator account to enable Interactive Logon session. 
@@ -36,7 +36,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
 
 ### Adding Simulation
-1. Click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Add%20Simulation-%23696d97"> from the bottom.
+1. On the bottom of an existing scan, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Add%20Simulation-%23696d97">
 2. Modify the newly added simulation by clicking the 🖊 button:
     * **Simulation Name**: Provide a new simulation name.
     * **Add Attacker Objective**: Select a technique from the library.
@@ -74,7 +74,7 @@ There are mainly 3 types of Scan Templates:
 
 ### Cloning Scan
 1. On the **Templates** tab, select one of the template types and click **ADD**.
-2. Select the scan to clone from.
+2. Select one of the existing scans to clone from.
 3. Click <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Template-%2371c6dd">
 
 ### Mobilizing Template
