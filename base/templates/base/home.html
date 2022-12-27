@@ -150,7 +150,7 @@
           <h2>Recent Activities</h2>
         </div>
 
-        {% for scan in userScans|slice:":2" %}
+        {% for scan in userScans|slice:":3" %}
           <div class="activities__box">
             <div class="activities__boxHeader roomListRoom__header">
               <a href="{% url 'user-profile' request.user.id %}" class="roomListRoom__author">

@@ -2,19 +2,19 @@
 This documentation outlines all the basic tutorials for getting started with Build Your Own LOLBins (BYOL).
 
 ## Table of Contents
-- [Getting Started](#Getting%20Started)
+- [Getting Started](#Getting-Started)
 - [Scan](#Scan)
-    - [Creating Scan](#Creating%20Scan)
-        + [Adding Simulation](#Adding%20Simulation)
-        + [Editing Simulation Payloads](#Editing%20Simulation%20Payloads)
-    + [Launching Scan](#Launching%20Scan)
-        + [Scan Status](#Scan%20Status)
+    - [Creating Scan](#Creating-Scan)
+        + [Adding Simulation](#Adding-Simulation)
+        + [Editing Simulation Payloads](#Editing-Simulation-Payloads)
+    + [Launching Scan](#Launching-Scan)
+        + [Scan Status](#Scan-Status)
 - [Template](#Template)
-    - [Cloning Scan](#Cloning%20Scan)
-    - [Creating Scan](#Creating%20Scan)
+    - [Cloning Scan](#Cloning-Scan)
+    - [Creating Scan](#Creating-Scan)
 - [Library](#Library)
 - [Report](#Report)
-- [Admin Management](#Admin%20Management)
+- [Admin Management](#Admin-Management)
 
 ## Getting Started
 To access the portal, use one of the following user accounts when prompted for login. The `admin` user has been granted privileged rights for [Admin Management](#Admin%20Management), and contains several scan history for ease of access. To build a scan from scratch, use the `user` account instead.
@@ -45,8 +45,20 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 ### Editing Simulation Payloads
 1. Expand the offcanvas by clicking on the objective box.
 2. Modify the technique by clicking the 🖊 button beside of `SIMULATION DETAILS`:
-    * **Payload**: Main payload for threat simulation. Must include `.exe` as the extension for LOLBins for globufscation to work.
+    * **Payload**: Main payload for threat simulation. Please include `.exe` as the extension for LOLBins for globufscation to work.
     * (Optional) **Cleanup**: Command to wipe leftover artificats. Also used as verification to lower false positive rate. Optional but highly encouraged to include. 
     * (Optional) **Chain To Previous**: When enabled, the current technique will execute if the previous one succedeed. Disabled by default, only enable if the payload has dependencies from the previous technique.
     * (Optional) **High Integrity Process**: Run the payload under High Integrity context. Disabled by default, only enable for privileged actions such as Credentials Dumping and Process Injection.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Details-%2371c6dd">
+
+### Launching Scan
+1. The current status must be one of the following for a scan to initiate:
+    * **STOPPED**: Scanning is halted and results for all simulations are reset to NULL.
+    * **COMPLETED**: Scanning is completed and results are displayed on the objective box.
+    * **ERROR**: Scanning halted due to ConnectionError, TimeoutError or CredentialsError.
+2. To start the scan, click on the status display-bar located on the top-right corner.
+
+### Terminating Scan
+1. To terminate a scan in-progress, the status must be `RUNNING`:
+    * **RUNNING**: Scanning in progress, results are updated in real-time. Refresh required.
+2. Click on the status display-bar located on the top-right corner, and the scan will be halted automatically on the next interval.

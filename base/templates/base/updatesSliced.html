@@ -5,7 +5,7 @@
       <h2>Library Updates</h2>
     </div>
 
-    {% for technique in techniques|slice:":2"%}
+    {% for technique in techniques|slice:":3"%}
       <div class="activities__box">
         <div class="activities__boxHeader roomListRoom__header">
           <a href="{% url 'user-profile' technique.user.id %}" class="roomListRoom__author">
