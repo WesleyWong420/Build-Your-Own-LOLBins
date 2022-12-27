@@ -13,8 +13,8 @@ This documentation outlines all the basic tutorials for getting started with Bui
     - [Cloning Scan](#Cloning-Scan)
     - [Mobilizing Template](#Mobilizing-Template)
 - [Library](#Library)
-    - [Adding Technique \[Admin]](#Adding-Technique-Admin)
-    - [Adding Variant \[Admin]](#Adding-Variant-Admin)
+    - [Adding Technique](#Adding-Technique-Admin)
+    - [Adding Variant](#Adding-Variant-Admin)
 - [Report](#Report)
 - [Admin Management](#Admin-Management)
 
@@ -98,7 +98,7 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
 1. On the **Library** tab, click on the **Technique Name** of any binary to view the variant details.
 2. To add a new variant, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20New%20Variant-%2371c6dd">
 3. Enter details for the new variant. Some attributes must first be created in [Admin Management](#Admin%20Management) before it can be selected here:
-    * **Severity**: Threat level of the variant. Available options are : **HIGH**, **MEDIUM** & **LOW**.
+    * **Severity**: Threat level of the variant. Available options are: **HIGH**, **MEDIUM** & **LOW**.
     * **ATT&CK Sub-Technique**: Sub-techniques are automatically mapped to it's parent Technique and Tactic.
     * **Objective**: Select one execution purpose.
     * **Generic Payload**: Generic Payload only acts as a reference to improve payload customization, and will not be executed in any occasion. Command arguments are denoted with the format `#{arg}`.
@@ -111,3 +111,9 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
     * **MITRE ATT&CK**: Reference link to MITRE ATT&CK Framework.
     * **LOLBAS Project**: Reference link to LOLBAS Project.
 4. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Variant-%2371c6dd">
+
+### Adding Globfuscation
+Due to the time complexity associated, finding all the matching wildcards (Globfuscation) of a LOLBin must be performed seperately on a Windows Machine with Python 3.11.X installed using [globfuscation.py](./globfuscation.py).
+```
+python .\globfuscation.py "C:\\Windows\\System32\\calc.exe"
+```
