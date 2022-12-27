@@ -15,10 +15,11 @@ This documentation outlines all the basic tutorials for getting started with Bui
 - [Library](#Library)
     - [Adding Technique](#Adding-Technique-Admin)
     - [Adding Variant](#Adding-Variant-Admin)
-    - [Adding Globfuscation](#Adding-Globfuscation)
+    - [Adding Globfuscation](#Adding-Globfuscation-Admin)
 - [Report](#Report)
 - [Summary](#Summary)
 - [Admin Management](#Admin-Management)
+    - [Adding ATT&CK TTPs](#Adding-ATT&CK-TTPs-Admin)
 
 ## Getting Started
 To access the portal, use one of the following user accounts when prompted for login. The `admin` user has been granted privileged rights for [Admin Management](#Admin%20Management), and contains several scan history for ease of access. To build a scan from scratch, use the `user` account instead.
@@ -101,7 +102,7 @@ The threat library consisting of **24 Unique LOLBins** and **49 Variants** is ac
 2. To add a new variant, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20New%20Variant-%2371c6dd">
 3. Enter details for the new variant. Some attributes must first be created in [Admin Management](#Admin%20Management) before it can be selected here:
     * **Severity**: Threat level of the variant. Available options are: **HIGH**, **MEDIUM** & **LOW**.
-    * **ATT&CK Sub-Technique**: Sub-techniques are automatically mapped to it's parent Technique and Tactic.
+    * **ATT&CK Sub-Technique**: Sub-techniques are automatically mapped to it's Parent Technique and Tactic.
     * **Objective**: Select one execution purpose.
     * **Generic Payload**: Generic Payload only acts as a reference to improve payload customization, and will not be executed in any occasion. Command arguments are denoted with the format `#{arg}`.
     * **Default Payload**: The primary payload that will be copied and used when a variant is added to a simulation or scan. It is a mirror to the Generic Payload, but with the command arguments substituted with actual process name or file name. All default payloads are non-malicious and will only execute `calc.exe` as a Proof-of-Concept.  
@@ -132,3 +133,14 @@ compromised_threats / (compromised_threats + blocked_threats)
 ```
 
 ## Admin Management
+Certain attributes like **APT Groups**, **Objectives**, **ATT&CK Tactics**, **ATT&CK Techniques** and **ATT&CK Sub-Techniques** are prerequisites information for [Adding Technique](#Adding-Technique-Admin) and [Adding Variant](#Adding-Variant-Admin). These attributes are managed in the **Admin Panel**.
+
+### Adding ATT&CK TTPs \[Admin]
+Majority of ATT&CK TTPs consists of 3 layers: **Tactics**, **Techniques** and **Sub-Techniques**. When [Adding a Variant](#Adding-Variant-Admin), **Sub-Techniques** are automatically mapped to it's Parent Technique and Tactic when displayed in a hierarchy tree.
+To create an ATT&CK TTP that consists of only 2 Levels (technique without any sub-techniques), there are special rules that applies:
+1. Create a **Tactic** and **Technique** as usual using <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Add%20Tactic-%2371c6dd"> and <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Add%20Technique-%2371c6dd"> respectively.
+2. Create a **Sub-Technique** by clicking on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Add%20Sub-Technique-%2371c6dd"> and following the instructions below:
+    * **Name**: Enter a name that is identical to the Parent Technique.
+    * **ATT&CK ID**: Enter `.000` as the ID.
+    * **Parent Technique**: Select the Parent Technique from the dropdown list.
+3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Sub-Technique-%2371c6dd">
