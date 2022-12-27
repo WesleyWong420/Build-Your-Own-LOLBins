@@ -135,11 +135,16 @@ compromised_threats / (compromised_threats + blocked_threats)
 ## Admin Management
 Certain attributes like **APT Groups**, **Objectives**, **ATT&CK Tactics**, **ATT&CK Techniques** and **ATT&CK Sub-Techniques** are prerequisites information for [Adding Technique](#Adding-Technique-Admin) and [Adding Variant](#Adding-Variant-Admin). These attributes are managed in the **Admin Panel**.
 
+![](./base/static/screenshots/9.png)
+
 ### Adding ATT&CK TTPs \[Admin]
+
+#### Level 3
 Majority of ATT&CK TTPs consists of 3 layers: **Tactics**, **Techniques** and **Sub-Techniques**. When [Adding a Variant](#Adding-Variant-Admin), **Sub-Techniques** are automatically mapped to it's Parent Technique and Tactic when displayed in a hierarchy tree.
 
 ![](./base/static/screenshots/Level3.png)
 
+#### Level 2
 To create an ATT&CK TTP that consists of only 2 Levels (technique without any sub-techniques), there are special rules that applies:
 1. Create a **Tactic** and **Technique** as usual using <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Add%20Tactic-%2371c6dd"> and <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Add%20Technique-%2371c6dd"> respectively.
 2. Create a **Sub-Technique** by clicking on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Add%20Sub--Technique-%2371c6dd"> and following the instructions below:
