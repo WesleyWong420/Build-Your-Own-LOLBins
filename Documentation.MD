@@ -1,4 +1,4 @@
-# Build Your Own LOLBins Documentation
+# Documentation
 This documentation outlines all the basic tutorials for getting started with Build Your Own LOLBins (BYOL).
 
 ## Table of Contents
@@ -27,4 +27,4 @@ To access the portal, use one of the following user accounts when prompted for l
 All created or completed scans can be found in the **Scan Dashboard** under the **Scan** tab. All scans are sorted in descending order based on the latest update time.
 
 ### Creating Scan
-1. <p style="display: flex; align-items: center">Click on   <img src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd"></p>
+1. Click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
