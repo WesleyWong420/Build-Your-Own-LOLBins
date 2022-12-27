@@ -27,4 +27,6 @@ To access the portal, use one of the following user accounts when prompted for l
 All created or completed scans can be found in the **Scan Dashboard** under the **Scan** tab. All scans are sorted in descending order based on the latest update time.
 
 ### Creating Scan
-1. Click on Test <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
+1. Click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
+2. Enter the **IP Address**, **Username** and **Password** for the target machine (Windows 10).
+3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-Create%20Scan-%2371c6dd">
