@@ -27,4 +27,4 @@ To access the portal, use one of the following user accounts when prompted for l
 All created or completed scans can be found in the **Scan Dashboard** under the **Scan** tab. All scans are sorted in descending order based on the latest update time.
 
 ### Creating Scan
-1. <p vertical-align="center">Click on ![](https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd)</p>
+1. <p style="text-align:center;vertical-align:center">Click on ![](https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd)</p>
