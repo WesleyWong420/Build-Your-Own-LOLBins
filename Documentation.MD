@@ -28,4 +28,4 @@ All created or completed scans can be found in the **Scan Dashboard** under the 
 
 ### Creating Scan
 **To create a new scan**
-1. Click on <span style="background-color: #71c6dd;color: #3f4156;border-radius: 5px;padding: 0.1rem 0.2rem;"> + Create Scan</span>.
+1. Click on ![](https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd)
