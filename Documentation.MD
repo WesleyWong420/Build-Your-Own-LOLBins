@@ -8,10 +8,10 @@ This documentation outlines all the basic tutorials for getting started with Bui
         + [Adding Simulation](#Adding-Simulation)
         + [Editing Simulation Payloads](#Editing-Simulation-Payloads)
     + [Launching Scan](#Launching-Scan)
-        + [Scan Status](#Scan-Status)
+    + [Terminating Scan](#Terminating-Scan)
 - [Template](#Template)
     - [Cloning Scan](#Cloning-Scan)
-    - [Creating Scan](#Creating-Scan)
+    - [Mobilizing Template](#Mobilizing-Template)
 - [Library](#Library)
 - [Report](#Report)
 - [Admin Management](#Admin-Management)
@@ -25,7 +25,7 @@ To access the portal, use one of the following user accounts when prompted for l
 | user     | user     | Default User  |
 
 ## Scan
-All created and completed scans can be found in the **Scan Dashboard** under the **Scan** tab. Scans are sorted in descending order based on the latest update time.
+All created and completed scans can be found in the **Scan Dashboard** under the **Scan** tab. Scans are sorted in descending order based on the latest update time. Every scan can have multiple simulations, and within each simulations are several layers of techniques/variants/objectives chained together.
 
 ### Creating Scan
 1. Click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%2B%20%20Create%20Scan-%2371c6dd">
@@ -62,3 +62,12 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 1. To terminate a scan in-progress, the status must be `RUNNING`:
     * **RUNNING**: Scanning in progress, results are updated in real-time. Refresh required.
 2. Click on the status display-bar located on the top-right corner, and the scan will be halted automatically on the next interval.
+
+## Template
+Scan templates are granular configuration settings specified by the user. It is essentially a snapshot of all the simulations and techniques contained in a scan at the time of cloning. This allows user to replicate scans easily and make changes to existing scans without compromising the original backup.
+
+### Template Types
+There are mainly 3 types of Scan Templates:
+    * **APT**: Specialized templates that simulates the attack chain of Advanced Persistent Threat (APT) groups. Accessible by everyone, but only Administrators can create or modify such template.
+    * **Community**: Public templates that are shared among all users. Accessible by everyone and can be published by anyone, but only the template owner has Edit permission.
+    * **Private**: Private templates that are only accessible by the owner. Acts as a backup for scans.
