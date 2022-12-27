@@ -12,7 +12,6 @@ import debug_toolbar
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('', include('base.urls')),
-    path('__debug__/', include('debug_toolbar.urls')),
 ]
 
 handler404 = "base.views.notFound"
