@@ -52,13 +52,14 @@ All created and completed scans can be found in the **Scan Dashboard** under the
 ![](./base/static/gifs/2.gif)
 
 ### Editing Simulation
-1. Expand the offcanvas by clicking on the objective box.
-2. Modify the technique by clicking the 🖊 button beside of **SIMULATION DETAILS**:
+1. Ensure that the scan status is not **RUNNING**.
+2. Expand the offcanvas by clicking on the objective box.
+3. Modify the technique by clicking the 🖊 button beside of **SIMULATION DETAILS**:
     * **Payload**: Main payload for threat simulation. Please include `.exe` as the extension for LOLBins for globufscation to work.
     * (Optional) **Cleanup**: Command to wipe leftover artificats. Also used as verification to lower false positive rate. Optional but highly encouraged to include. 
     * (Optional) **Chain To Previous**: When enabled, the current technique will execute if the previous one succedeed. Disabled by default, only enable if the payload has dependencies from the previous technique.
     * (Optional) **High Integrity Process**: Run the payload under High Integrity context. Disabled by default, only enable for privileged actions such as Credentials Dumping and Process Injection.
-3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Details-%2371c6dd">
+4. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Details-%2371c6dd">
 
 ![](./base/static/gifs/3.gif)
 

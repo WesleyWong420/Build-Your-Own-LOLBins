@@ -4,13 +4,13 @@ services:
   django:
     build: .
     container_name: django
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: python3 manage.py runserver 0.0.0.0:8000 --insecure
     volumes:
       - .:/usr/src/app/
     ports:
       - "8000:8000"
     environment:
-      - DEBUG=1
+      - DEBUG=0
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_RESULT_BACKEND=redis://redis:6379/0
