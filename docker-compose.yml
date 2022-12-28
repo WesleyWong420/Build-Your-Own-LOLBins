@@ -1,32 +1,40 @@
-version: '3.4'
+version: '3.8'
  
 services:
-  app:
+  django:
     build: .
+    container_name: django
     command: sh -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
-    container_name: app
-    expose:
-      - "8000"
-    hostname: app
-    image: app-image
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_BACKEND=redis://redis:6379/0
     networks:
       - main
     restart: on-failure
+    depends_on:
+      - redis
  
   redis:
-    image: redis:alpine
+    image: "redis:alpine"
 
   celery_worker:
-    command: celery -A BYOL worker -l info -P solo
+    build: .
     container_name: celery_worker
-    depends_on:
-      - app
-      - redis
-    hostname: celery_worker
-    image: app-image
+    command: celery -A BYOL worker -l info -P solo
+    volumes:
+      - .:/usr/src/app/
     networks:
       - main
     restart: on-failure
+    depends_on:
+      - django
+      - redis
 
 networks:
   main:
