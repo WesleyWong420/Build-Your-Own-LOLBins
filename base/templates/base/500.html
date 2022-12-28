@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type='text/css' media='screen' href="{% static 'styles/500.css' %}">
+    <title>500 Internal Server Error</title>
+  </head>
+
+  <body>
+    <div id="error">Error</div>
+      <div class="error-num">500
+        <div class="error-num__clip">500</div>
+      </div>
+      <p id="desc">Uh oh, there seems to be a problem.</p>
+      <p>Let me help you find <a href="{% url 'home' %}" target="_blank">a way out</a></p>
+  </body>
+</html>

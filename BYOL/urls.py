@@ -14,3 +14,4 @@ urlpatterns = [
 ]
 
 handler404 = "base.views.notFound"
+handler500 = "base.views.error"

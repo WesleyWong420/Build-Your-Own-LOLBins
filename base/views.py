@@ -1310,3 +1310,6 @@ def forbidden(request):
 
 def notFound(request, exception):
     return render(request, 'base/404.html')
+
+def error(request):
+    return render(request, 'base/500.html')

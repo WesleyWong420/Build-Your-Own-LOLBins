@@ -28,27 +28,18 @@ class evilwinrm:
         self.username = username
         self.password = password
 
-    # def testConnection(self):
-    #     try:
-    #         session = winrm.Session(self.host, auth=(self.username, self.password))
-    #         session.run_cmd("whoami")
-    #     except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout):
-    #         return False
-    #     except AuthenticationError:
-    #         return False
-
     def testConnection(self):
         try:
             session = winrm.Session(self.host, auth=(self.username, self.password))
             session.run_cmd("whoami")
         except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout):
-            print("ERROR!!!!!!!!!! Timeout or Connection Error")
+            print("WinRM Error> Error occured when establishing a connection!")
             return False
         except AuthenticationError:
-            print("ERROR!!!!!!!!!! Auth Error")
+            print("WinRM Error> Error with Authentication Credentials!")
             return False
         else:
-            print("ERROR!!!!!!!!!! Other Errors")
+            print("WinRM Error> Generic Error!")
             return False
 
     def initializeConnection(self, pk):
