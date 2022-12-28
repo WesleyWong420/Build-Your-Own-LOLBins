@@ -1229,8 +1229,11 @@ def report(request):
         untested_list.append(untested_count)
         score_list.append(score_count)
 
-    score = (addIndex(compromised_list) / (addIndex(action_list) - addIndex(untested_list))) * 100
-    score = round(score)
+    if (addIndex(action_list) - addIndex(untested_list)) == 0:
+        score = 0
+    else:
+        score = (addIndex(compromised_list) / (addIndex(action_list) - addIndex(untested_list))) * 100
+        score = round(score)
 
     context = {'threat_count': addIndex(action_list), 'blocked_count': addIndex(blocked_list), 'compromised_count': addIndex(compromised_list), 'untested_count': addIndex(untested_list), 'score': score, 'score_list': score_list, 'userScans': userScans, 'action_list': action_list}
 
