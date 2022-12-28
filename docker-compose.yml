@@ -1,9 +1,9 @@
 version: '3.8'
  
 services:
-  django:
+  byol:
     build: .
-    container_name: django
+    container_name: byol
     command: python3 manage.py runserver 0.0.0.0:8000 --insecure
     volumes:
       - .:/usr/src/app/
@@ -28,5 +28,5 @@ services:
     volumes:
       - .:/usr/src/app/
     depends_on:
-      - django
+      - byol
       - redis
