@@ -13,6 +13,7 @@ services:
       - DEBUG=1
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
       - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
       - CELERY_BACKEND=redis://redis:6379/0
     depends_on:
       - redis
