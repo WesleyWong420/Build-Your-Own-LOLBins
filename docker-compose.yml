@@ -14,9 +14,6 @@ services:
       - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1
       - CELERY_BROKER_URL=redis://redis:6379/0
       - CELERY_BACKEND=redis://redis:6379/0
-    networks:
-      - main
-    restart: on-failure
     depends_on:
       - redis
  
@@ -29,12 +26,6 @@ services:
     command: celery -A BYOL worker -l info -P solo
     volumes:
       - .:/usr/src/app/
-    networks:
-      - main
-    restart: on-failure
     depends_on:
       - django
       - redis
-
-networks:
-  main:
