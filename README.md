@@ -36,6 +36,7 @@ The technical requirements of this project are:
 **Run With Docker:**
 ```
 git clone https://github.com/WesleyWong420/Build-Your-Own-LOLBins.git
+cd Build-Your-Own-LOLBins/
 docker-compose up -d
 curl http://localhost:8000
 ```

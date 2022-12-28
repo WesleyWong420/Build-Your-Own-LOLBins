@@ -12,7 +12,7 @@ services:
       sh -c "python3 manage.py migrate &&
              python3 manage.py runserver 0.0.0.0:8000
     env_file:
-      - ./env/.env.dev
+      - ./.env.dev
  
   redis:
     image: redis:alpine
@@ -24,7 +24,7 @@ services:
     volumes:
       - ./base:/base
     env_file:
-      - ./env/.env.dev
+      - ./.env.dev
     depends_on:
       - redis
       - base
