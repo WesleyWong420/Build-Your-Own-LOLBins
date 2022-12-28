@@ -164,9 +164,9 @@
                       <div class="accordion-boxes">
                         {% for variant in simulation.UserVariant.all %}
                           {% if variant.chainPrevious == 'Yes' %}
-                            <div class="connector-padding">aaaaaa</div>
+                            <div class="connector-padding">{blank}</div>
                           {% elif variant.chainPrevious == 'No' and not forloop.first %}
-                            <div class="connector-blank">aaaaaa</div>
+                            <div class="connector-blank">{blank}</div>
                           {% endif %}
 
                           <a class="accordion-box {% if variant.highIntegrity == 'Yes' %} accordion-box-integrity {% endif %}" data-bs-toggle="offcanvas" href="#offcanvasExample{{variant.id}}">

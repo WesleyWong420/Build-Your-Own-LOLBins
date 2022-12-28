@@ -33,12 +33,20 @@ The technical requirements of this project are:
 * Linux (Hosting BYOL)
 * Windows 10 64-bit (Victim Virtual Machine)
 
-**Run With Docker:**
+**Run With Docker (Detached Mode):**
 ```
 git clone https://github.com/WesleyWong420/Build-Your-Own-LOLBins.git
 cd Build-Your-Own-LOLBins/
 docker-compose build
 docker-compose up -d
+curl http://localhost:8000
+```
+
+**Run With Docker (Debugging):**
+```
+git clone https://github.com/WesleyWong420/Build-Your-Own-LOLBins.git
+cd Build-Your-Own-LOLBins/
+docker-compose up
 curl http://localhost:8000
 ```
 <br>
