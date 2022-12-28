@@ -30,8 +30,15 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 
 ## Installation
 The technical requirements of this project are:
-* Python 3.10.9
+* Linux (Hosting BYOL)
 * Windows 10 64-bit (Victim Virtual Machine)
+
+**Run With Docker:**
+```
+git clone https://github.com/WesleyWong420/Build-Your-Own-LOLBins.git
+docker-compose up -d
+curl http://localhost:8000
+```
 <br>
 
 **NOTE**: BYOL uses Windows Remote Management (WinRM) to communicate with the remote host.
