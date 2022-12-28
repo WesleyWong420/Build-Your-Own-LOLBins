@@ -32,13 +32,13 @@ class evilwinrm:
         try:
             session = winrm.Session(self.host, auth=(self.username, self.password))
             session.run_cmd("whoami")
-        except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout):
+        except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout, ConnectionError, ConnectionRefusedError, NewConnectionError):
             print("WinRM Error> Error occured when establishing a connection!")
             return False
         except AuthenticationError:
             print("WinRM Error> Error with Authentication Credentials!")
             return False
-        else:
+        except:
             print("WinRM Error> Generic Error!")
             return False
 
