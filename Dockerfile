@@ -10,5 +10,3 @@ RUN pip install -r /requirements.txt
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . .
-
-RUN apk del .build-deps

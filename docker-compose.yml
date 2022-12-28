@@ -15,7 +15,7 @@ services:
  
   redis:
     image: redis:alpine
-    
+
   celery_worker:
     command: celery -A BYOL worker -l info -P solo
     container_name: celery_worker
@@ -27,3 +27,6 @@ services:
     networks:
       - main
     restart: on-failure
+
+networks:
+  main:
