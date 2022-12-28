@@ -32,6 +32,7 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 The technical requirements of this project are:
 * Linux (Hosting BYOL)
 * Windows 10 64-bit (Victim Virtual Machine)
+<br>
 
 **Run With Docker (Detached Mode):**
 ```
@@ -65,7 +66,7 @@ $ Set-NetConnectionProfile -NetworkCategory Private
 > Only use Local Admin Account as the user credentials!
 
 ## Usage
-**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. byol.dll, byol.exe, byol.js etc do not have defensive capabilities and will be flagged by AV vendors. 
+**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. `byol.dll`, `byol.exe`, `byol.js` etc do not have defensive capabilities and will be flagged by AV vendors. 
 > Although not mandatory, it is recommended to disable any AV solutions before performing a scan simulation!
 
 [Tutorial](./Documentation.MD)
