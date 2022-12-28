@@ -56,10 +56,10 @@ curl http://localhost:8000
 > To enable WinRM on the victim machine:
 ```
 $ winrm quickconfig
-$ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
-$ winrm set winrm/config/service/auth '@{Basic="true"}'
 $ netsh advfirewall firewall add rule name="WinRM" dir=in localport=5985 protocol=TCP action=allow
 $ Set-NetConnectionProfile -NetworkCategory Private
+$ winrm set winrm/config/service '@{AllowUnencrypted="true"}'
+$ winrm set winrm/config/service/auth '@{Basic="true"}'
 ```
 
 **NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. 
