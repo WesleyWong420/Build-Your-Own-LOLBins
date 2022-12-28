@@ -7,6 +7,8 @@ RUN apk update && apk add python3-dev gcc libc-dev
 COPY ./requirements.txt /requirements.txt
 RUN pip install -r /requirements.txt
 
-RUN mkdir /base
-COPY ./base /base
-WORKDIR /base
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY . .
+
+RUN apk del .build-deps

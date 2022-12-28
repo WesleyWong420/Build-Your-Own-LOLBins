@@ -1,30 +1,29 @@
-version: '3.8'
+version: '3.4'
  
 services:
-  base:
-    build:
-      context: .
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./base:/base
-    command: >
-      sh -c "python3 manage.py migrate &&
-             python3 manage.py runserver 0.0.0.0:8000
-    env_file:
-      - ./.env.dev
+  app:
+    build: .
+    command: sh -c "python3 manage.py migrate && python3 manage.py runserver 0.0.0.0:8000"
+    container_name: app
+    expose:
+      - "8000"
+    hostname: app
+    image: app-image
+    networks:
+      - main
+    restart: on-failure
  
   redis:
     image: redis:alpine
-  celery:
-    restart: always
-    build:
-      context: .
-    command: celery -A app worker -l info -P solo
-    volumes:
-      - ./base:/base
-    env_file:
-      - ./.env.dev
+    
+  celery_worker:
+    command: celery -A BYOL worker -l info -P solo
+    container_name: celery_worker
     depends_on:
+      - app
       - redis
-      - base
+    hostname: celery_worker
+    image: app-image
+    networks:
+      - main
+    restart: on-failure

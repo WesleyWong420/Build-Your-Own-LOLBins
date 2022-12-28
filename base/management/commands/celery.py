@@ -17,4 +17,4 @@ class Command(BaseCommand):
 
     @staticmethod
     def run(cmd):
-        # subprocess.call(shlex.split(cmd))
+        subprocess.call(shlex.split(cmd))
