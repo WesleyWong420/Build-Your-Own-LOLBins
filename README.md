@@ -30,7 +30,7 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 
 ## Installation
 The technical requirements of this project are:
-* Linux (Hosting BYOL)
+* Docker Compose (Hosting BYOL)
 * Windows 10 64-bit (Victim Virtual Machine)
 <br>
 
