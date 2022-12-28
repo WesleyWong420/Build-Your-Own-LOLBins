@@ -7,7 +7,6 @@ Project URLs Definition
 
 from django.contrib import admin
 from django.urls import path, include
-import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
