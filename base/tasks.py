@@ -81,7 +81,7 @@ class evilwinrm:
                                 exit 5 
                             }}
                             $registeredTask | Start-ScheduledTask
-                            while ((Get-ScheduledTask -TaskName 'InteractiveTask').State -ne 'Ready') {{ Start-Sleep -Seconds 1 }}
+                            while ((Get-ScheduledTask -TaskName $task).State -ne 'Ready') {{ Start-Sleep -Seconds 1 }}
                             Unregister-ScheduledTask -TaskName $task -Confirm:$false"""
 
         glob_list = list(userVariant.Variant.Technique.glob_set.all())
@@ -115,7 +115,7 @@ class evilwinrm:
                     exit 5 
                 }}
                 $registeredTask | Start-ScheduledTask
-                while ((Get-ScheduledTask -TaskName 'InteractiveTask').State -ne 'Ready') {{ Start-Sleep -Seconds 1 }}
+                while ((Get-ScheduledTask -TaskName $task).State -ne 'Ready') {{ Start-Sleep -Seconds 1 }}
                 Unregister-ScheduledTask -TaskName $task -Confirm:$false"""
         else:
             payloadToRun = f"""$binary = {binary}
@@ -127,7 +127,7 @@ class evilwinrm:
                     exit 5 
                 }}
                 $registeredTask | Start-ScheduledTask
-                while ((Get-ScheduledTask -TaskName 'InteractiveTask').State -ne 'Ready') {{ Start-Sleep -Seconds 1 }}
+                while ((Get-ScheduledTask -TaskName $task).State -ne 'Ready') {{ Start-Sleep -Seconds 1 }}
                 Unregister-ScheduledTask -TaskName $task -Confirm:$false"""
 
         try:
