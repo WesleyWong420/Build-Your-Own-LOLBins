@@ -51,28 +51,12 @@ class evilwinrm:
         delimiterIndex = str(userVariant.payload).find("&")
         binary = str(userVariant.payload)[0:techniqueIndex+4]
 
-        # if userVariant.highIntegrity == 'Yes':
-        #     integrityLevel = " -RunLevel Highest"
-        # else:
-        #     integrityLevel = ""
-
         if delimiterIndex == -1:
             remaining = str(userVariant.payload)[techniqueIndex+5:]
             chainPayload = ""
         else:
             remaining = str(userVariant.payload)[techniqueIndex+5:delimiterIndex-1]
             chainRemaining = str(userVariant.payload)[delimiterIndex+2:]
-            # chainPayload = f"""$action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument '/c {chainRemaining}'
-            #                 $user = New-ScheduledTaskPrincipal -UserId "{self.username}" -LogonType Interactive -RunLevel Highest
-            #                 $task = New-ScheduledTask -Action $action -Principal $user
-            #                 $registeredTask = $task | Register-ScheduledTask -TaskName InteractiveTask -ErrorAction SilentlyContinue
-            #                 if ($registeredTask -eq $null) {{ exit 5 }}
-            #                 $registeredTask | Start-ScheduledTask
-            #                 while ((Get-ScheduledTask -TaskName 'InteractiveTask').State -ne 'Ready') {{
-            #                     Start-Sleep -Seconds 1
-            #                 }}
-            #                 Unregister-ScheduledTask -TaskName InteractiveTask -Confirm:$false"""
-
             chainPayload = f"""$action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument '/c {chainRemaining}'
                             $task = "Build Your Own LOLBins"
                             $registeredTask = Register-ScheduledTask -TaskName $task -Action $action -RunLevel Highest -ErrorAction SilentlyContinue
@@ -92,18 +76,6 @@ class evilwinrm:
             binary = "'" + binary + "'"
         else:
             binary = "Get-ChildItem " + glob.name
-
-        # payloadToRun = f"""$binary = {binary}
-        #                 $action = New-ScheduledTaskAction -Execute $binary -Argument '{remaining}'
-        #                 $user = New-ScheduledTaskPrincipal -UserId "{self.username}" -LogonType Interactive{integrityLevel}
-        #                 $task = New-ScheduledTask -Action $action -Principal $user
-        #                 $registeredTask = $task | Register-ScheduledTask -TaskName InteractiveTask -ErrorAction SilentlyContinue
-        #                 if ($registeredTask -eq $null) {{ exit 5 }}
-        #                 $registeredTask | Start-ScheduledTask
-        #                 while ((Get-ScheduledTask -TaskName 'InteractiveTask').State -ne 'Ready') {{
-        #                     Start-Sleep -Seconds 1
-        #                 }}
-        #                 Unregister-ScheduledTask -TaskName InteractiveTask -Confirm:$false"""
 
         if userVariant.highIntegrity == 'Yes':
             payloadToRun = f"""$binary = {binary}
