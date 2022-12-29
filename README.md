@@ -71,6 +71,9 @@ $ winrm set winrm/config/service/auth @{Basic="true"}
 
 [Tutorial](./Documentation.MD)
 
+## Limitations
+* BYOL does not support NTLM Authentication. Hence, does not work on AD-joined machines.
+
 ## Technique Coverage
 | LOLBins | Variants | Objectives |
 |:-----|:---------:|:-----------|
