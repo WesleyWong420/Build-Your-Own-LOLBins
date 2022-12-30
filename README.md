@@ -62,6 +62,7 @@ $ Set-NetConnectionProfile -NetworkCategory Private
 $ winrm set winrm/config/service @{AllowUnencrypted="true"}
 $ winrm set winrm/config/service/auth @{Basic="true"}
 ```
+<br>
 
 **NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. 
 > Always use a Local Admin account for the user credentials!
