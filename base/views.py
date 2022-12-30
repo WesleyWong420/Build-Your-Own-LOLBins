@@ -1142,6 +1142,9 @@ def newGlob(request, pk):
     technique = Technique.objects.get(id=pk)
     form = GlobForm()
 
+    if request.user.is_superuser != 1:
+        return redirect('forbidden') 
+
     if request.method == 'POST':
         form = GlobForm(request.POST)
 
@@ -1243,6 +1246,9 @@ def report(request):
 def exportExcel(request, pk):
     scan = Scan.objects.get(id=pk)
 
+    if request.user != scan.user:
+        return redirect('forbidden') 
+
     file_name = scan.name.replace(" ", "_")
     response = HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition'] = f'attachment; filename="{file_name}.xls"'
@@ -1280,6 +1286,9 @@ def exportExcel(request, pk):
 @login_required(login_url='login')
 def exportJson(request, pk):
     scan = Scan.objects.get(id=pk)
+
+    if request.user != scan.user:
+        return redirect('forbidden') 
 
     scanList = []
     simulationList = []
