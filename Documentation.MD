@@ -3,6 +3,7 @@ This documentation outlines all the basic tutorials for getting started with Bui
 
 ## Table of Contents
 - [Getting Started](#Getting-Started)
+- [Quick Start](#Quick-Start)
 - [Scan](#Scan)
     - [Creating Scan](#Creating-Scan)
         + [Adding Simulation](#Adding-Simulation)
@@ -28,6 +29,9 @@ To access the portal, use one of the following user accounts when prompted for l
 |:--------:|:--------:|:-------------:|
 | admin    | admin    | Administrator |
 | user     | user     | Default User  |
+
+## Quick Start
+There are 5 readily available scans in the `admin` user account. For quick demonstration purpose, modify the IP Address and User Credentials fields accordingly from any of the available scans and it will be ready for simulation.-
 
 ## Scan
 All created and completed scans can be found in the **Scan Dashboard** under the **Scan** tab. Scans are sorted in descending order based on the latest update time. Every scan can have multiple simulations, and within each simulations are several layers of techniques/variants/objectives chained together.
@@ -69,6 +73,8 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * **COMPLETED**: Scanning is completed and results are displayed on the objective box.
     * **ERROR**: Scanning halted due to ConnectionError, TimeoutError or CredentialsError.
 2. To start the scan, click on the status display-bar located on the top-right corner.
+
+> If the scan status shows **ERROR**, make sure that the Victim IP is reachable by the attacker and provide a valid set of Local Admin credentials.
 
 ### Terminating Scan
 1. To terminate a scan in-progress, the status must be **RUNNING**:

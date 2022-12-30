@@ -32,6 +32,8 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 The technical requirements of this project are:
 * Docker Compose (Hosting BYOL)
 * Windows 10 Home 64-bit (Victim Virtual Machine)
+
+> Certain simulations will tamper with Registry Keys of the Operating System, always use a dedicated Virtual Machine!
 <br>
 
 **Run With Docker (Detached Mode):**
