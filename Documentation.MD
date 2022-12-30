@@ -31,7 +31,7 @@ To access the portal, use one of the following user accounts when prompted for l
 | user     | user     | Default User  |
 
 ## Quick Start
-There are 5 readily available scans in the `admin` user account. For quick demonstration purpose, modify the IP Address and User Credentials fields accordingly from any of the available scans and it will be ready for simulation.-
+There are 5 readily available scans in the `admin` user account. For quick demonstration purpose, modify the IP Address and User Credentials fields accordingly from any of the available scans and it will be ready for simulation.
 
 ## Scan
 All created and completed scans can be found in the **Scan Dashboard** under the **Scan** tab. Scans are sorted in descending order based on the latest update time. Every scan can have multiple simulations, and within each simulations are several layers of techniques/variants/objectives chained together.
