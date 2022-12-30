@@ -44,7 +44,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * **Password**: User credentials for authentication.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Create%20Scan-%2371c6dd">
 
-![](./base/static/gifs/1.gif)
+<img src="./base/static/gifs/1.gif?raw=true">
 
 ### Adding Simulation
 1. On the bottom of an existing scan, click on <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Add%20Simulation-%23696d97">
@@ -53,7 +53,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * **Add Attacker Objective**: Select a technique from the library.
 3. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Simulation-%2371c6dd">
 
-![](./base/static/gifs/2.gif)
+<img src="./base/static/gifs/2.gif?raw=true">
 
 ### Editing Simulation
 1. Ensure that the scan status is not **RUNNING**.
@@ -65,7 +65,7 @@ All created and completed scans can be found in the **Scan Dashboard** under the
     * (Optional) **High Integrity Process**: Run the payload under High Integrity context. Disabled by default, only enable for privileged actions such as Credentials Dumping and Process Injection.
 4. Select <img style="vertical-align: middle;" src="https://img.shields.io/badge/-%20Update%20Details-%2371c6dd">
 
-![](./base/static/gifs/3.gif)
+<img src="./base/static/gifs/3.gif?raw=true">
 
 ### Launching Scan
 1. The current status must be one of the following for a scan to initiate:
