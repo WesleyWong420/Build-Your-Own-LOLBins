@@ -33,7 +33,7 @@ The technical requirements of this project are:
 * Docker Compose (Hosting BYOL)
 * Windows 10 Home 64-bit (Victim Virtual Machine)
 
-> Certain simulations will tamper with Registry Keys of the Operating System, always use a dedicated Virtual Machine!
+> Certain simulations will tamper with Registry Keys of the Operating System, always use a Virtual Machine!
 <br>
 
 **Run With Docker (Detached Mode):**
@@ -64,7 +64,7 @@ $ winrm set winrm/config/service/auth @{Basic="true"}
 ```
 
 **NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. 
-> Only use Local Admin Account for the user credentials!
+> Always use a Local Admin account for the user credentials!
 
 ## Usage
 **NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. `byol.dll`, `byol.exe`, `byol.js` etc do not have evasive capabilities and will be flagged by AV vendors. 
