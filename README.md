@@ -31,7 +31,7 @@ This project is highly inspired by [Atomic Red Team](https://github.com/redcanar
 ## Installation
 The technical requirements of this project are:
 * Docker Compose (Hosting BYOL)
-* Windows 10 64-bit (Victim Virtual Machine)
+* Windows 10 Home 64-bit (Victim Virtual Machine)
 <br>
 
 **Run With Docker (Detached Mode):**
@@ -43,17 +43,16 @@ docker-compose up -d
 curl http://localhost:8000
 ```
 
-**Run With Docker (Debugging):**
+**Run With Docker (Debugging Mode):**
 ```
 git clone https://github.com/WesleyWong420/Build-Your-Own-LOLBins.git
 cd Build-Your-Own-LOLBins/
 docker-compose up
-curl http://localhost:8000
 ```
 <br>
 
 **NOTE**: BYOL uses Windows Remote Management (WinRM) to communicate with the remote host.
-> To enable WinRM on the victim machine:
+> To enable WinRM on the victim machine, run the following commands using CMD as Administrator:
 ```
 $ winrm quickconfig
 $ netsh advfirewall firewall add rule name="WinRM" dir=in localport=5985 protocol=TCP action=allow
@@ -63,16 +62,17 @@ $ winrm set winrm/config/service/auth @{Basic="true"}
 ```
 
 **NOTE**: BYOL requires admin privileges on the victim machine to enable Interactive Logon Session. 
-> Only use Local Admin Account as the user credentials!
+> Only use Local Admin Account for the user credentials!
 
 ## Usage
-**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. `byol.dll`, `byol.exe`, `byol.js` etc do not have defensive capabilities and will be flagged by AV vendors. 
-> Although not mandatory, it is recommended to disable any AV solutions before performing a scan simulation!
+**NOTE**: BYOL only deploys command-line based obfuscation to bypass string matching rules, such as those written in Sigma Project. All file-based Proof-of-Concept payloads, e.g. `byol.dll`, `byol.exe`, `byol.js` etc do not have evasive capabilities and will be flagged by AV vendors. 
+> Although not mandatory, it is recommended to disable all Antivirus softwares before performing any scan!
 
 [Tutorial](./Documentation.MD)
 
 ## Limitations
-* BYOL does not support NTLM Authentication. Hence, it does not work with AD-joined machines.
+* BYOL only supports Interactive Logon session, and will require Local Admin credentials to work.
+* BYOL does not support NTLM Authentication, and hence will not work with any AD-joined machines.
 
 ## Technique Coverage
 | LOLBins | Variants | Objectives |
