@@ -74,8 +74,9 @@ $ winrm set winrm/config/service/auth @{Basic="true"}
 [Tutorial](./Documentation.MD)
 
 ## Limitations
+* BYOL does not support NTLM Authentication, and will not work with any AD-joined machines.
 * BYOL only supports Interactive Logon session, and will require Local Admin credentials to work.
-* BYOL does not support NTLM Authentication, and hence will not work with any AD-joined machines.
+* BYOL only supports 1 ongoing scan at a time for the same target machine. This is by design to avoid conflict on a single Interactive Logon session.
 
 ## Technique Coverage
 | LOLBins | Variants | Objectives |

@@ -35,7 +35,10 @@ class evilwinrm:
         except (TimeoutError, ConnectTimeoutError, MaxRetryError, ConnectTimeout, ConnectionError, ConnectionRefusedError, NewConnectionError):
             print("WinRM Error> Error occured when establishing a connection!")
             return False
-        except AuthenticationError:
+        except BasicAuthDisabledError:
+            print("WinRM Error> Basic Authentication is disabled on remote target!")
+            return False
+        except (AuthenticationError, InvalidCredentialsError):
             print("WinRM Error> Error with Authentication Credentials!")
             return False
         except:
