@@ -33,7 +33,7 @@ def test_if_glob_matches(test, start_path, target):
 
 
 def glob_mutate(subpath):
-    for each_possibility  in itertools.product("?X", repeat=len(subpath)):
+    for each_possibility in itertools.product("?X", repeat=len(subpath)):
         new_mutation = list(each_possibility)
         for i, c in enumerate(each_possibility):
             if c == "X":
@@ -52,7 +52,6 @@ def path_parts(path_str):
 def main():
     global glob_cache, args
 
-    # target = r"C:\\Windows\\System32\\calc.exe"
     target = args.target
 
     short_mode = True
