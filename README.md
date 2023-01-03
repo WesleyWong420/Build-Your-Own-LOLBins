@@ -159,3 +159,6 @@ Powershell.exe | 4 | `Execute`
 
 ### **Admin Management**
 ![](./base/static/screenshots/9.png)
+
+### **Poster**
+![](./base/static/images/poster.png)
