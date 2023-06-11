@@ -40,8 +40,8 @@ The technical requirements of this project are:
 ```
 git clone https://github.com/WesleyWong420/Build-Your-Own-LOLBins.git
 cd Build-Your-Own-LOLBins/
-docker-compose build
-docker-compose up -d
+sudo docker-compose build
+sudo docker-compose up -d
 curl http://localhost:8000
 ```
 
